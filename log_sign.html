@@ -3,23 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindMesh</title>
-    <link rel="stylesheet" href="style.css">
+    <title>MindMesh - Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
     <h1>MIND MESH</h1>
     <nav class="navbar">
-        <ul>
+         <div style="font-size:20px; font-weight:700;"><i class="fa-solid fa-heart"></i> MindMesh</div>
+      <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="peer.html">Peer Community</a></li>
             <li><a href="counsel.html">Counsellors</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="log_sign.html">Login/SignUp</a></li>
+           <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a></li>
+         <li><a href="log_sign.html"><i class="fa-solid fa-user"></i> Profile</a></li>
         </ul>
 
         <div class="menu-toggle">☰</div> <!-- Optional mobile menu icon -->
     </nav>
-    <h1>Work in Progress !! Go Slow</h1>
-</body>
 
+    <!-- Hero -->
+  <section class="hero">
+    <h1>Your Profile</h1>
+    <p>Manage your account, privacy, and saved activities 🌟</p>
+  </section>
+
+  <!-- Profile Card -->
+  <section class="profile">
+    <div class="profile-card">
+      <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="User">
+      <h2>Rohit Sharma</h2>
+      <p>Email: rohit@example.com</p>
+      <p>Status: Feeling motivated 💪</p>
+      <div class="toggle">
+        <button onclick="toggleMode()">Switch to Anonymous Mode</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Settings -->
+  <section class="settings">
+    <h3>Settings</h3>
+    <button>Edit Profile</button>
+    <button>Change Password</button>
+    <button>Privacy Preferences</button>
+  </section>
+
+  <!-- Activity -->
+  <section class="activity">
+    <h3>Recent Activity</h3>
+    <div class="item">👍 You liked Sophia's post on journaling</div>
+    <div class="item">💬 You commented on Ravi’s post about music & walks</div>
+    <div class="item">📌 You saved Dr. Anjali Sharma’s stress relief tips</div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 MindMesh | Team Innovatrix</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
 </html>
