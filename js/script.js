@@ -78,3 +78,76 @@ chatbotIcon.addEventListener("click", () => {
     });
   });
 
+// Handle story form submission and display stories
+document.addEventListener('DOMContentLoaded', function() {
+  const storyForm = document.getElementById('storyForm');
+  if (storyForm) {
+    storyForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = this.querySelector('input').value;
+      const story = this.querySelector('textarea').value;
+
+      const storyList = document.getElementById('story-list');
+      const storyCard = document.createElement('div');
+      storyCard.className = 'story-card';
+      storyCard.innerHTML = `<strong>${name}</strong><p>${story}</p>`;
+      storyList.appendChild(storyCard);
+
+      this.reset();
+    });
+  }
+});
+// Scroll animation for cards, posts, and members
+window.addEventListener('scroll', () => {
+  const trigger = window.innerHeight * 0.85;
+  
+  // Animate cards
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const top = card.getBoundingClientRect().top;
+    if (top < trigger) {
+      card.classList.add('show');
+    }
+  });
+  
+  // Animate posts
+  const posts = document.querySelectorAll('.post');
+  posts.forEach(post => {
+    const top = post.getBoundingClientRect().top;
+    if (top < trigger) {
+      post.classList.add('show');
+    }
+  });
+  
+  // Animate team members
+  const members = document.querySelectorAll('.member');
+  members.forEach(member => {
+    const top = member.getBoundingClientRect().top;
+    if (top < trigger) {
+      member.classList.add('show');
+    }
+  });
+});
+
+// Toggle between anonymous and public mode
+function toggleMode() {
+  const btn = document.querySelector('.toggle button');
+  if (btn.innerText.includes("Anonymous")) {
+    btn.innerText = "Switch to Public Mode";
+    alert("✅ Anonymous Mode Activated");
+  } else {
+    btn.innerText = "Switch to Anonymous Mode";
+    alert("👤 Public Mode Activated");
+  }
+}
+
+// Toggle hamburger menu
+function toggleMenu() {
+  const nav = document.getElementById("nav-links");
+  const menuIcon = document.querySelector('.menu-toggle');
+  
+  nav.classList.toggle("active");
+  if (menuIcon) {
+    menuIcon.classList.toggle('open');
+  }
+}
