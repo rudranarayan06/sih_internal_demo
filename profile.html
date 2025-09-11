@@ -91,7 +91,7 @@
                         </form>
 
                         <div class="form-footer">
-                            <a href="#" class="link">Forgot your password?</a>
+                            <a href="#" class="link" onclick="forgotPassword()">Forgot your password?</a>
                             <p>Don't have an account? <a href="#" class="link" onclick="switchToSignup()">Create one now</a></p>
                         </div>
                     </div>
@@ -139,15 +139,18 @@
 
                             <div class="form-group">
                                 <label for="academicYear">Academic Year</label>
-                                <select id="academicYear" required>
-                                    <option value="">Select your year</option>
-                                    <option value="1st-year">1st Year</option>
-                                    <option value="2nd-year">2nd Year</option>
-                                    <option value="3rd-year">3rd Year</option>
-                                    <option value="4th-year">4th Year</option>
-                                    <option value="graduate">Graduate Student</option>
-                                    <option value="phd">PhD Student</option>
-                                </select>
+                                <div class="input-group">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <select id="academicYear" required>
+                                        <option value="">Select your year</option>
+                                        <option value="1st Year">1st Year</option>
+                                        <option value="2nd Year">2nd Year</option>
+                                        <option value="3rd Year">3rd Year</option>
+                                        <option value="4th Year">4th Year</option>
+                                        <option value="Masters 1st Year">Master's Student</option>
+                                        <option value="PhD Student">PhD Student</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -189,21 +192,7 @@
         <!-- Profile Dashboard -->
         <div id="profile-page" class="profile-page" style="display: none;">
             <div class="dashboard-container">
-                <!-- Header -->
-                <header class="dashboard-header">
-                    <div class="header-brand">
-                        <i class="fas fa-heart"></i>
-                        <h1>MindMesh</h1>
-                    </div>
-                    <div class="header-actions">
-                        <button class="btn-icon" onclick="showSettings()">
-                            <i class="fas fa-cog"></i>
-                        </button>
-                        <button class="btn-icon" onclick="logout()">
-                            <i class="fas fa-sign-out-alt"></i>
-                        </button>
-                    </div>
-                </header>
+                
 
                 <!-- Welcome Section -->
                 <div class="welcome-section">
@@ -225,10 +214,16 @@
                                 </span>
                             </div>
                         </div>
-                        <button class="btn-secondary">
-                            <i class="fas fa-edit"></i>
-                            Edit Profile
-                        </button>
+                        <div class="user-actions">
+                            <button class="btn-secondary" onclick="editProfile()">
+                                <i class="fas fa-edit"></i>
+                                Edit Profile
+                            </button>
+                            <button class="btn-secondary logout-btn" onclick="logout()" style="background-color: #dc3545; color: white; margin-left: 10px;">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </div>
                     </div>
                 </div>
 

@@ -2,6 +2,9 @@
 let currentUser = null;
 let isAuthenticated = false;
 
+// API Base URL
+const API_BASE_URL = window.location.origin + '/api';
+
 // DOM Elements
 const authPage = document.getElementById('auth-page');
 const profilePage = document.getElementById('profile-page');
@@ -10,13 +13,23 @@ const signupForm = document.getElementById('signup-form');
 const toast = document.getElementById('toast');
 
 // Initialize the app
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Check if user is already logged in (from localStorage)
     const savedUser = localStorage.getItem('mindmash_user');
-    if (savedUser) {
+    const savedToken = localStorage.getItem('mindmash_token');
+
+    if (savedUser && savedToken) {
         currentUser = JSON.parse(savedUser);
         isAuthenticated = true;
-        showProfilePage();
+        // Verify token is still valid
+        verifyToken().then(valid => {
+            if (valid) {
+                showProfilePage();
+            } else {
+                logout();
+                showAuthPage();
+            }
+        });
     } else {
         showAuthPage();
     }
@@ -27,102 +40,177 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Authentication Functions
-function handleLogin(e) {
+async function handleLogin(e) {
     e.preventDefault();
-    
+
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
-    
+
     if (!email || !password) {
         showToast('Please fill in all fields', 'error');
         return;
     }
-    
+
     // Show loading state
     const submitBtn = e.target.querySelector('button[type="submit"]');
     showButtonLoading(submitBtn, true);
-    
-    // Simulate API call
-    setTimeout(() => {
-        // For demo purposes, accept any valid email/password
-        if (email.includes('@') && password.length >= 6) {
-            currentUser = {
-                firstName: 'John',
-                lastName: 'Doe',
-                email: email,
-                university: 'Example University',
-                year: '3rd Year'
-            };
-            
-            localStorage.setItem('mindmash_user', JSON.stringify(currentUser));
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/auth/signin`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Store user data and token
+            currentUser = data.user;
             isAuthenticated = true;
-            
-            showToast('Welcome back to MindMash!', 'success');
+            localStorage.setItem('mindmash_user', JSON.stringify(data.user));
+            localStorage.setItem('mindmash_token', data.token);
+
+            showToast('Login successful! Welcome back!', 'success');
             showProfilePage();
         } else {
-            showToast('Invalid email or password', 'error');
+            showToast(data.message || 'Login failed', 'error');
         }
-        
+    } catch (error) {
+        console.error('Login error:', error);
+        showToast('Network error. Please try again.', 'error');
+    } finally {
         showButtonLoading(submitBtn, false);
-    }, 1500);
+    }
 }
 
-function handleSignup(e) {
+async function handleSignup(e) {
     e.preventDefault();
-    
+
     const formData = {
         firstName: document.getElementById('firstName').value,
         lastName: document.getElementById('lastName').value,
         email: document.getElementById('signupEmail').value,
         university: document.getElementById('university').value,
-        year: document.getElementById('academicYear').value,
+        academicYear: document.getElementById('academicYear').value,
         password: document.getElementById('signupPassword').value,
         confirmPassword: document.getElementById('confirmPassword').value
     };
-    
+
     // Validation
-    if (!formData.firstName || !formData.lastName || !formData.email || 
-        !formData.university || !formData.year || !formData.password) {
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.university || !formData.academicYear || !formData.password) {
         showToast('Please fill in all required fields', 'error');
         return;
     }
-    
+
     if (formData.password !== formData.confirmPassword) {
         showToast('Passwords do not match', 'error');
         return;
     }
-    
+
     if (formData.password.length < 8) {
         showToast('Password should be at least 8 characters long', 'error');
         return;
     }
-    
+
     if (!formData.email.includes('@')) {
         showToast('Please enter a valid email address', 'error');
         return;
     }
-    
+
     // Show loading state
     const submitBtn = e.target.querySelector('button[type="submit"]');
     showButtonLoading(submitBtn, true);
-    
-    // Simulate API call
-    setTimeout(() => {
-        currentUser = {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            university: formData.university,
-            year: formData.year
-        };
-        
-        localStorage.setItem('mindmash_user', JSON.stringify(currentUser));
-        isAuthenticated = true;
-        
-        showToast('Welcome to MindMash! Your account has been created successfully.', 'success');
-        showProfilePage();
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // Store user data and token
+            currentUser = data.user;
+            isAuthenticated = true;
+            localStorage.setItem('mindmash_user', JSON.stringify(data.user));
+            localStorage.setItem('mindmash_token', data.token);
+
+            showToast('Account created successfully! Welcome to MindMesh!', 'success');
+            showProfilePage();
+        } else {
+            if (data.errors && data.errors.length > 0) {
+                showToast(data.errors[0].msg, 'error');
+            } else {
+                showToast(data.message || 'Registration failed', 'error');
+            }
+        }
+    } catch (error) {
+        console.error('Signup error:', error);
+        showToast('Network error. Please try again.', 'error');
+    } finally {
         showButtonLoading(submitBtn, false);
-    }, 2000);
+    }
+}
+
+// Token verification function
+async function verifyToken() {
+    try {
+        const token = localStorage.getItem('mindmash_token');
+        if (!token) return false;
+
+        const response = await fetch(`${API_BASE_URL}/auth/profile`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        return response.ok;
+    } catch (error) {
+        console.error('Token verification error:', error);
+        return false;
+    }
+}
+
+// Forgot password function
+async function forgotPassword() {
+    const email = prompt('Enter your email address:');
+    if (!email) return;
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // For demo purposes, show the reset URL
+            if (data.resetUrl) {
+                const useResetLink = confirm(`Password reset token generated!\n\nFor demo purposes, would you like to open the reset password page now?\n\n(In production, this would be sent via email)`);
+                if (useResetLink) {
+                    window.open(data.resetUrl, '_blank');
+                }
+            } else {
+                showToast('Password reset token generated successfully!', 'success');
+            }
+        } else {
+            showToast(data.message || 'Failed to generate reset token', 'error');
+        }
+    } catch (error) {
+        console.error('Forgot password error:', error);
+        showToast('Network error. Please try again.', 'error');
+    }
 }
 
 // UI Functions
@@ -150,27 +238,28 @@ function showAuthPage() {
 
 function showProfilePage() {
     if (!currentUser) return;
-    
+
     authPage.style.display = 'none';
     profilePage.style.display = 'block';
-    
+
     updateProfileUI();
 }
 
 function updateProfileUI() {
     if (!currentUser) return;
-    
+
     // Update user info
     const initials = `${currentUser.firstName.charAt(0)}${currentUser.lastName.charAt(0)}`.toUpperCase();
     document.getElementById('userInitials').textContent = initials;
     document.getElementById('welcomeMessage').textContent = `Welcome back, ${currentUser.firstName}!`;
-    document.getElementById('userMeta').textContent = `${currentUser.university} • ${currentUser.year}`;
+    document.getElementById('userMeta').textContent = `${currentUser.university} • ${currentUser.academicYear}`;
 }
 
 function logout() {
     currentUser = null;
     isAuthenticated = false;
     localStorage.removeItem('mindmash_user');
+    localStorage.removeItem('mindmash_token');
     showToast('You have been logged out successfully', 'success');
     showAuthPage();
     switchToLogin();
@@ -181,7 +270,7 @@ function switchTab(tabName) {
     // Remove active class from all tabs
     document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    
+
     // Add active class to clicked tab
     event.target.classList.add('active');
     document.getElementById(`${tabName}-tab`).classList.add('active');
@@ -191,7 +280,7 @@ function switchTab(tabName) {
 function togglePassword(inputId) {
     const input = document.getElementById(inputId);
     const icon = event.target.closest('button').querySelector('i');
-    
+
     if (input.type === 'password') {
         input.type = 'text';
         icon.classList.remove('fa-eye');
@@ -206,7 +295,7 @@ function togglePassword(inputId) {
 function showButtonLoading(button, isLoading) {
     const btnText = button.querySelector('.btn-text');
     const btnLoading = button.querySelector('.btn-loading');
-    
+
     if (isLoading) {
         btnText.style.display = 'none';
         btnLoading.style.display = 'inline';
@@ -222,7 +311,7 @@ function showToast(message, type = 'success') {
     toast.textContent = message;
     toast.className = `toast ${type}`;
     toast.classList.add('show');
-    
+
     setTimeout(() => {
         toast.classList.remove('show');
     }, 3000);
@@ -242,13 +331,13 @@ function editProfile() {
 }
 
 // Add some demo interactivity
-document.addEventListener('click', function(e) {
+document.addEventListener('click', function (e) {
     // Handle button clicks in dashboard
     if (e.target.matches('.btn-primary.small')) {
         e.preventDefault();
         joinSession();
     }
-    
+
     if (e.target.matches('.btn-secondary') || e.target.closest('.btn-secondary')) {
         e.preventDefault();
         editProfile();
@@ -261,11 +350,11 @@ document.documentElement.style.scrollBehavior = 'smooth';
 // Add some animations on scroll for dashboard elements
 function handleScrollAnimations() {
     const elements = document.querySelectorAll('.stat-card, .activity-card');
-    
+
     elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const elementVisible = 150;
-        
+
         if (elementTop < window.innerHeight - elementVisible) {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
@@ -281,10 +370,10 @@ function trapFocus(element) {
     const focusableElements = element.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
-    
+
     const firstElement = focusableElements[0];
     const lastElement = focusableElements[focusableElements.length - 1];
-    
+
     element.addEventListener('keydown', (e) => {
         if (e.key === 'Tab') {
             if (e.shiftKey) {
@@ -315,17 +404,17 @@ function validatePassword(password) {
 }
 
 // Real-time form validation
-document.addEventListener('input', function(e) {
+document.addEventListener('input', function (e) {
     if (e.target.type === 'email') {
         const isValid = validateEmail(e.target.value);
         e.target.style.borderColor = isValid ? 'var(--success-color)' : 'var(--danger-color)';
     }
-    
+
     if (e.target.id === 'signupPassword') {
         const isValid = validatePassword(e.target.value);
         e.target.style.borderColor = isValid ? 'var(--success-color)' : 'var(--danger-color)';
     }
-    
+
     if (e.target.id === 'confirmPassword') {
         const password = document.getElementById('signupPassword').value;
         const isMatching = e.target.value === password;
@@ -334,13 +423,13 @@ document.addEventListener('input', function(e) {
 });
 
 // Add keyboard shortcuts
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     // Ctrl/Cmd + L for logout
     if ((e.ctrlKey || e.metaKey) && e.key === 'l' && isAuthenticated) {
         e.preventDefault();
         logout();
     }
-    
+
     // Escape key to close any modals or reset forms
     if (e.key === 'Escape') {
         clearForms();
@@ -382,7 +471,7 @@ function printDashboard() {
 // Initialize app features
 function initializeApp() {
     initializeTheme();
-    
+
     // Add loading screen
     const loadingScreen = document.createElement('div');
     loadingScreen.id = 'loading-screen';
@@ -393,7 +482,7 @@ function initializeApp() {
             <p>Loading your wellness dashboard...</p>
         </div>
     `;
-    
+
     // Remove loading screen after content is loaded
     setTimeout(() => {
         if (document.getElementById('loading-screen')) {
