@@ -41,6 +41,40 @@ function toggleMode() {
   }
 }
 
+// Navbar toggle
+    function toggleMenu() {
+      let menu = document.getElementById("menu");
+      let burger = document.querySelector(".hamburger");
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+        burger.classList.remove("open");
+      } else {
+        menu.style.display = "flex";
+        burger.classList.add("open");
+      }
+    }
 
 
-  
+    const chatbotIcon = document.getElementById("chatbot-icon");
+const chatbotPopup = document.getElementById("chatbot-popup");
+chatbotIcon.addEventListener("click", () => {
+  if (chatbotPopup.style.display === "block") {
+    chatbotPopup.style.display = "none";
+  } else {
+    chatbotPopup.style.display = "block";
+  }
+});
+
+
+
+  // animate testimonials on scroll
+  const testimonials = document.querySelectorAll('.testimonial');
+  window.addEventListener('scroll', () => {
+    const trigger = window.innerHeight * 0.85;
+    testimonials.forEach(t => {
+      if (t.getBoundingClientRect().top < trigger) {
+        t.classList.add('show');
+      }
+    });
+  });
+
