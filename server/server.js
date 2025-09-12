@@ -22,14 +22,43 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Serve static files from the parent directory (frontend)
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '..'), {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        }
+        if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+        }
+    }
+}));
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 
-// Serve frontend files
+// Serve frontend files - specific HTML pages
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
+
+app.get('/peer', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'peer.html'));
+});
+
+app.get('/profile', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'profile.html'));
+});
+
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'about.html'));
+});
+
+app.get('/counsel', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'counsel.html'));
+});
+
+app.get('/reset-password', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'reset-password.html'));
 });
 
 // Connect to MongoDB
@@ -66,12 +95,18 @@ app.use((err, req, res, next) => {
     });
 });
 
-// 404 handler
+// 404 handler - serve index.html for any unmatched routes (SPA fallback)
 app.use((req, res) => {
-    res.status(404).json({ 
-        success: false, 
-        message: 'Route not found' 
-    });
+    // If it's an API request, return JSON error
+    if (req.path.startsWith('/api/')) {
+        res.status(404).json({ 
+            success: false, 
+            message: 'API route not found' 
+        });
+    } else {
+        // For any other route, serve the index.html (SPA fallback)
+        res.sendFile(path.join(__dirname, '..', 'index.html'));
+    }
 });
 
 const PORT = process.env.PORT || 5000;
