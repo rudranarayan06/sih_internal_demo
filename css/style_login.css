@@ -430,77 +430,167 @@ body {
 
 /* Welcome Section */
 .welcome-section {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-soft);
-    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(249, 250, 251, 0.95));
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 6px 20px rgba(0, 0, 0, 0.06);
+    padding: 2.5rem;
     animation: fadeIn 0.6s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), #0ea5e9, #8b5cf6);
+    border-radius: 20px 20px 0 0;
 }
 
 .user-info {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .avatar {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), #0ea5e9);
+    width: 5rem;
+    height: 5rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--primary-color), #0ea5e9, #8b5cf6);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.5rem;
-    font-weight: 600;
-    border: 4px solid rgba(59, 130, 246, 0.1);
+    font-size: 1.75rem;
+    font-weight: 700;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.avatar::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--primary-color), #0ea5e9, #8b5cf6);
+    z-index: -1;
+    opacity: 0.7;
+    filter: blur(8px);
 }
 
 .user-details {
     flex: 1;
+    padding-top: 0.5rem;
 }
 
 .user-details h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-color), #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
 }
 
 .user-details p {
     color: var(--text-secondary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.8;
 }
 
 .badges {
     display: flex;
-    gap: 0.75rem;
+    gap: 1rem;
     flex-wrap: wrap;
+    margin-bottom: 1.5rem;
 }
 
 .badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 500;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .badge.active {
-    background: rgba(16, 185, 129, 0.1);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
     color: var(--success-color);
+    border-color: rgba(16, 185, 129, 0.3);
 }
 
 .badge.streak {
-    background: rgba(245, 158, 11, 0.1);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
     color: var(--warning-color);
+    border-color: rgba(245, 158, 11, 0.3);
 }
 
 .badge.upcoming {
-    background: rgba(59, 130, 246, 0.1);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
     color: var(--primary-color);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.welcome-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.edit-profile-btn {
+    background: linear-gradient(135deg, var(--primary-color), #0ea5e9);
+    color: white;
+    border: none;
+    padding: 0.875rem 1.75rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.edit-profile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.edit-profile-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.edit-profile-btn:hover::before {
+    opacity: 1;
 }
 
 /* Dashboard Tabs */
@@ -898,5 +988,57 @@ body {
     
     .hero-content h1 {
         font-size: 2rem;
+    }
+
+    /* Welcome Section Mobile Responsiveness */
+    .welcome-section {
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+
+    .user-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .avatar {
+        width: 4rem;
+        height: 4rem;
+        font-size: 1.5rem;
+        border-radius: 16px;
+    }
+
+    .avatar::after {
+        border-radius: 18px;
+    }
+
+    .user-details h2 {
+        font-size: 1.75rem;
+    }
+
+    .user-details p {
+        font-size: 1rem;
+    }
+
+    .badges {
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .welcome-actions {
+        justify-content: center;
+    }
+
+    .edit-profile-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
     }
 }
