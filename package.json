@@ -1,11 +1,13 @@
 {
-  "name": "mindmesh-backend",
+  "name": "sih-mindmesh-platform",
   "version": "1.0.0",
-  "description": "Backend for MindMesh - Mental Health Platform",
-  "main": "server.js",
+  "description": "MindMesh - Mental Health Platform for Students",
+  "main": "server/server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "build": "echo 'Build complete'",
+    "vercel-build": "echo 'Vercel build complete'"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -19,11 +21,15 @@
   "devDependencies": {
     "nodemon": "^3.0.1"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "keywords": [
     "mental-health",
     "students",
-    "backend",
-    "mongodb"
+    "nodejs",
+    "mongodb",
+    "vercel"
   ],
   "author": "Team Innovatrix",
   "license": "MIT"

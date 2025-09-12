@@ -37,7 +37,8 @@ const userSchema = new mongoose.Schema({
             '3rd Year',
             '4th Year',
             '5th Year',
-            'Masters Student',
+            'Masters 1st Year',
+            'Masters 2nd Year',
             'PhD Student'
         ]
     },
