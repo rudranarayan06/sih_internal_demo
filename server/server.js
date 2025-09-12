@@ -21,44 +21,35 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Serve static files from the parent directory (frontend)
-app.use(express.static(path.join(__dirname, '..'), {
-    setHeaders: (res, path) => {
-        if (path.endsWith('.css')) {
-            res.setHeader('Content-Type', 'text/css');
-        }
-        if (path.endsWith('.js')) {
-            res.setHeader('Content-Type', 'application/javascript');
-        }
-    }
-}));
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 
 // Serve frontend files - specific HTML pages
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
 app.get('/peer', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'peer.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'peer.html'));
 });
 
 app.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'profile.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'profile.html'));
 });
 
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'about.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'about.html'));
 });
 
 app.get('/counsel', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'counsel.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'counsel.html'));
 });
 
 app.get('/reset-password', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'reset-password.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'reset-password.html'));
 });
 
 // Connect to MongoDB
@@ -105,7 +96,7 @@ app.use((req, res) => {
         });
     } else {
         // For any other route, serve the index.html (SPA fallback)
-        res.sendFile(path.join(__dirname, '..', 'index.html'));
+        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
     }
 });
 

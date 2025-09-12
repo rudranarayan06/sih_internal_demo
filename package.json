@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "build": "echo 'Build complete'",
-    "vercel-build": "echo 'Vercel build complete'"
+    "build": "mkdir public 2>nul & copy *.html public\\ & xcopy css public\\css\\ /E /I & xcopy js public\\js\\ /E /I",
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
