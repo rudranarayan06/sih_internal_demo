@@ -21,35 +21,15 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, '..', 'public')));
+// Serve static files from the parent directory (frontend)
+app.use(express.static(path.join(__dirname, '..')));
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 
-// Serve frontend files - specific HTML pages
+// Serve frontend files
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
-});
-
-app.get('/peer', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'peer.html'));
-});
-
-app.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'profile.html'));
-});
-
-app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'about.html'));
-});
-
-app.get('/counsel', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'counsel.html'));
-});
-
-app.get('/reset-password', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'reset-password.html'));
+    res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
 // Connect to MongoDB
@@ -86,18 +66,12 @@ app.use((err, req, res, next) => {
     });
 });
 
-// 404 handler - serve index.html for any unmatched routes (SPA fallback)
+// 404 handler
 app.use((req, res) => {
-    // If it's an API request, return JSON error
-    if (req.path.startsWith('/api/')) {
-        res.status(404).json({ 
-            success: false, 
-            message: 'API route not found' 
-        });
-    } else {
-        // For any other route, serve the index.html (SPA fallback)
-        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
-    }
+    res.status(404).json({ 
+        success: false, 
+        message: 'Route not found' 
+    });
 });
 
 const PORT = process.env.PORT || 5000;
