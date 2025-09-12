@@ -189,6 +189,18 @@ button:hover {
       color: #00bcd4;
     }
 
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-logo {
+      height: 50px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+    }
+
     /* Responsive Menu */
     @media screen and (max-width: 768px) {
       .navbar ul {

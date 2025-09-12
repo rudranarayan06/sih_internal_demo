@@ -63,17 +63,11 @@
             gap: 0.5rem;
         }
 
-        .logo-icon {
-            background: var(--gradient-primary);
-            padding: 0.5rem;
-            border-radius: 0.5rem;
-            color: white;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
+        .header-logo {
+            height: 55px;
+            width: auto;
+            max-width: 180px;
+            object-fit: contain;
         }
 
         .nav {
