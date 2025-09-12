@@ -42,20 +42,20 @@ function toggleMode() {
 }
 
 // Navbar toggle
-    function toggleMenu() {
-      let menu = document.getElementById("menu");
-      let burger = document.querySelector(".hamburger");
-      if (menu.style.display === "flex") {
-        menu.style.display = "none";
-        burger.classList.remove("open");
-      } else {
-        menu.style.display = "flex";
-        burger.classList.add("open");
-      }
-    }
+function toggleMenu() {
+  let menu = document.getElementById("menu");
+  let burger = document.querySelector(".hamburger");
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+    burger.classList.remove("open");
+  } else {
+    menu.style.display = "flex";
+    burger.classList.add("open");
+  }
+}
 
 
-    const chatbotIcon = document.getElementById("chatbot-icon");
+const chatbotIcon = document.getElementById("chatbot-icon");
 const chatbotPopup = document.getElementById("chatbot-popup");
 chatbotIcon.addEventListener("click", () => {
   if (chatbotPopup.style.display === "block") {
@@ -67,22 +67,22 @@ chatbotIcon.addEventListener("click", () => {
 
 
 
-  // animate testimonials on scroll
-  const testimonials = document.querySelectorAll('.testimonial');
-  window.addEventListener('scroll', () => {
-    const trigger = window.innerHeight * 0.85;
-    testimonials.forEach(t => {
-      if (t.getBoundingClientRect().top < trigger) {
-        t.classList.add('show');
-      }
-    });
+// animate testimonials on scroll
+const testimonials = document.querySelectorAll('.testimonial');
+window.addEventListener('scroll', () => {
+  const trigger = window.innerHeight * 0.85;
+  testimonials.forEach(t => {
+    if (t.getBoundingClientRect().top < trigger) {
+      t.classList.add('show');
+    }
   });
+});
 
 // Handle story form submission and display stories
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const storyForm = document.getElementById('storyForm');
   if (storyForm) {
-    storyForm.addEventListener('submit', function(e) {
+    storyForm.addEventListener('submit', function (e) {
       e.preventDefault();
       const name = this.querySelector('input').value;
       const story = this.querySelector('textarea').value;
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Scroll animation for cards, posts, and members
 window.addEventListener('scroll', () => {
   const trigger = window.innerHeight * 0.85;
-  
+
   // Animate cards
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
@@ -109,7 +109,7 @@ window.addEventListener('scroll', () => {
       card.classList.add('show');
     }
   });
-  
+
   // Animate posts
   const posts = document.querySelectorAll('.post');
   posts.forEach(post => {
@@ -118,7 +118,7 @@ window.addEventListener('scroll', () => {
       post.classList.add('show');
     }
   });
-  
+
   // Animate team members
   const members = document.querySelectorAll('.member');
   members.forEach(member => {
@@ -145,7 +145,7 @@ function toggleMode() {
 function toggleMenu() {
   const nav = document.getElementById("nav-links");
   const menuIcon = document.querySelector('.menu-toggle');
-  
+
   nav.classList.toggle("active");
   if (menuIcon) {
     menuIcon.classList.toggle('open');
