@@ -150,4 +150,108 @@ function toggleMenu() {
   if (menuIcon) {
     menuIcon.classList.toggle('open');
   }
+
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const visibilityToggle = document.getElementById('visibilityToggle');
+  const visibilityIcon = document.getElementById('visibilityIcon');
+  const visibilityText = document.getElementById('visibilityText');
+  const visibilityInput = document.getElementById('visibilityInput');
+
+  const states = [
+    { icon: 'fa-eye',       text: 'Public' },
+    { icon: 'fa-lock',      text: 'Private' },
+    { icon: 'fa-eye-slash', text: 'Anonymous' }
+  ];
+  let current = 0;
+
+  function updateUI() {
+    const s = states[current];
+    // reset icon class completely
+    visibilityIcon.className = 'fa-solid ' + s.icon;
+    visibilityText.textContent = s.text;
+    visibilityInput.value = s.text;
+  }
+
+  visibilityToggle.addEventListener('click', () => {
+    current = (current + 1) % states.length;
+    updateUI();
+  });
+
+  updateUI(); // set initial state
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const filterSelect = document.getElementById('storyFilter');
+  const storyCards = document.querySelectorAll('#story-list .story-card');
+
+  filterSelect.addEventListener('change', () => {
+    const selected = filterSelect.value;
+
+    storyCards.forEach(card => {
+      const cardFilter = card.dataset.filter; // Age / Severity / Category
+      if (selected === 'All' || cardFilter === selected) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const filterSelect = document.getElementById('storyFilter');
+  const storyCards = document.querySelectorAll('#story-list .story-card');
+
+  filterSelect.addEventListener('change', () => {
+    const selected = filterSelect.value;
+
+    storyCards.forEach(card => {
+      const cardFilter = card.dataset.filter;
+      if (selected === 'All' || cardFilter === selected) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Booking form (user)
+  const bookingForm = document.getElementById('bookingForm');
+  const bookingMsg = document.getElementById('bookingMsg');
+
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('studentName').value;
+    const age = document.getElementById('studentAge').value;
+    const date = document.getElementById('appointmentDate').value;
+    const time = document.getElementById('appointmentTime').value;
+    bookingMsg.textContent = `✅ Appointment booked for ${name} (Age ${age}) on ${date} at ${time}.`;
+    bookingForm.reset();
+  });
+
+  // Record form (admin)
+  const recordForm = document.getElementById('recordForm');
+  const recordsTableBody = document.querySelector('#recordsTable tbody');
+
+  recordForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('recordName').value;
+    const age = document.getElementById('recordAge').value;
+    const date = document.getElementById('recordDate').value;
+    const day = document.getElementById('recordDay').value;
+    const time = document.getElementById('recordTime').value;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${name}</td><td>${age}</td><td>${date}</td><td>${day}</td><td>${time}</td>`;
+    recordsTableBody.appendChild(tr);
+
+    recordForm.reset();
+  });
+
+});
