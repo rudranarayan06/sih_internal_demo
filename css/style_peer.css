@@ -174,4 +174,71 @@
             color: var(--muted-foreground);
             max-width: 32rem;
             margin: 0 auto;
+
         }
+
+.visibility-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  margin: 8px 0;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.visibility-toggle i {
+  font-size: 18px;
+  transition: color .3s;
+}
+
+.visibility-toggle:hover i {
+  color: #007bff;
+}
+
+
+/* style the select */
+.view-story select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* container for all stories */
+#story-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* each story card */
+.story-card {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.story-card h3 {
+  margin: 0 0 5px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.story-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #444;
+}
