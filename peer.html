@@ -50,14 +50,21 @@
         <form id="storyForm">
           <input type="text" placeholder="Your Name" required />
           <textarea placeholder="Share your story..." required></textarea>
+           <div id="visibilityToggle" class="visibility-toggle">
+  <i class="fa-solid fa-eye" id="visibilityIcon"></i>
           <button type="submit">Submit</button>
         </form>
       </div>
     </section>
   </main>
 
+ <!-- hidden field to send actual visibility value with the form -->
+      <input type="hidden" id="visibilityInput" name="visibility" value="Public" />
 
+    </form>
 
+    <div id="story-list"></div>
+  </div>
 
   <!-- Feed -->
   <section class="feed">
@@ -110,5 +117,4 @@
   <script src="js/script.js"></script>
 
 </body>
-
 </html>
