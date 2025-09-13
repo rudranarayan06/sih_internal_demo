@@ -54,6 +54,10 @@
     </div>
   </section>
 
+  <div style="text-align: center; margin-top: 30px;">
+  <a href="counsel_profile.html" class="login-btn">Counsellor Login</a>
+</div>
+
   <!-- Counsellor Cards -->
   <section class="counsellors">
     <div class="card">
@@ -61,95 +65,32 @@
       <h3>Dr. Anjali Sharma</h3>
       <p>Psychology Dept</p>
       <p><i class="fa-solid fa-star" style="color:#f59f00;"></i> Anxiety, Stress</p>
-      <button>Book Slot</button>
+      <a href="book.html" class="book-btn">Book Slot</a>
+       <a href="call.html" class="call-btn">Call</a>
     </div>
     <div class="card">
       <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Counsellor">
       <h3>Mr. Ramesh Kumar</h3>
       <p>Student Counsellor</p>
       <p><i class="fa-solid fa-star" style="color:#f59f00;"></i> Motivation, Career</p>
-      <button>Book Slot</button>
+      <a href="book.html" class="book-btn">Book Slot</a>
     </div>
     <div class="card">
       <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Counsellor">
       <h3>Dr. Neha Verma</h3>
       <p>Wellness Specialist</p>
       <p><i class="fa-solid fa-star" style="color:#f59f00;"></i> Relationships, Depression</p>
-      <button>Book Slot</button>
+      <a href="book.html" class="book-btn">Book Slot</a>
     </div>
   </section>
-
-  <div class="container">
-
-  <!-- Section 1: User Facing Info -->
-  <section>
-    <h2>College Health Centre</h2>
-    <p><strong>Building/Block:</strong> B-Block, Ground Floor</p>
-    <p><strong>Room No.:</strong> 102</p>
-    <p><strong>Office Contact:</strong> +91-98765-43210</p>
-    <p><strong>Counsellor Contact:</strong> Dr. A Sharma – +91-91234-56789</p>
-
-    <h3>Book an Appointment</h3>
-    <form id="bookingForm">
-      <input type="text" id="studentName" placeholder="Your Name" required>
-      <input type="number" id="studentAge" placeholder="Your Age" required>
-      <input type="date" id="appointmentDate" required>
-      <input type="time" id="appointmentTime" required>
-      <textarea id="concern" placeholder="Briefly describe your concern (optional)"></textarea>
-      <button type="submit">Book Appointment</button>
-    </form>
-    <div id="bookingMsg"></div>
-  </section>
-
-  <!-- Section 2: Admin / Health Centre Records -->
-  <section>
-    <h2>Student Consultation Records (Health Centre use)</h2>
-    <form id="recordForm">
-      <input type="text" id="recordName" placeholder="Student Name" required>
-      <input type="number" id="recordAge" placeholder="Age" required>
-      <input type="date" id="recordDate" required>
-      <select id="recordDay" required>
-        <option value="">Day</option>
-        <option>Monday</option>
-        <option>Tuesday</option>
-        <option>Wednesday</option>
-        <option>Thursday</option>
-        <option>Friday</option>
-      </select>
-      <input type="time" id="recordTime" required>
-      <button type="submit">Add Record</button>
-    </form>
-
-    <table id="recordsTable">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Date</th>
-          <th>Day</th>
-          <th>Time</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-
-</div>
-
   <!-- Floating Emergency Button -->
   <div class="floating-btn" onclick="alert('📞 Dialing 24x7 Helpline...')">
     <i class="fa-solid fa-phone"></i>
   </div>
-
   <!-- Footer -->
   <footer>
     <p>© 2025 MindMesh | Team Innovatrix</p>
   </footer>
-
-
   <script src="js/script.js"></script>
-
 </body>
-
-
 </html>
