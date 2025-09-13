@@ -491,5 +491,27 @@ function initializeApp() {
     }, 1000);
 }
 
+const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+    togglePassword.addEventListener('click', () => {
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+      togglePassword.classList.toggle('fa-eye-slash');
+    });
+
+    // Public / Private toggle
+    const visibilityIcon = document.getElementById('visibilityIcon');
+    const visibilityText = document.getElementById('visibilityText');
+    visibilityIcon.addEventListener('click', () => {
+      if (visibilityIcon.classList.contains('fa-eye')) {
+        visibilityIcon.classList.replace('fa-eye','fa-eye-slash');
+        visibilityText.textContent = 'Private';
+      } else {
+        visibilityIcon.classList.replace('fa-eye-slash','fa-eye');
+        visibilityText.textContent = 'Public';
+      }
+    });
+
 // Call initialization
+
 initializeApp();
