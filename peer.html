@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MindMesh - Peer Community </title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style_login.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -50,8 +51,15 @@
         <form id="storyForm">
           <input type="text" placeholder="Your Name" required />
           <textarea placeholder="Share your story..." required></textarea>
-           <div id="visibilityToggle" class="visibility-toggle">
-  <i class="fa-solid fa-eye" id="visibilityIcon"></i>
+          <div class="btn-group">
+  <button id="privateBtn">Private</button>
+  <button id="publicBtn">Public</button>
+</div>
+
+<!-- Age Input -->
+<label for="age">Enter Your Age:</label>
+<input type="number" id="age" placeholder="Type your age" min="10" max="100">
+<p id="ageError" class="error"></p>
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -118,3 +126,4 @@
 
 </body>
 </html>
+
