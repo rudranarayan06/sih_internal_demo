@@ -289,7 +289,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom:0.75rem;
+    margin-bottom:1rem;
 }
 
 .toggle-password:hover {
@@ -1113,5 +1113,6 @@ body {
     font-size: 13px;
     margin-top: 5px;
   }
+
 
 
