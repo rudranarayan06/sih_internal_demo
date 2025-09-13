@@ -242,3 +242,69 @@
   font-size: 14px;
   color: #444;
 }
+
+
+.card {
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      display: inline-block;
+      margin: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .star {
+      font-size: 24px;
+      color: orange;
+    }
+    .book-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4A6CF7;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .book-btn:hover {
+      background-color: #3b57c4;
+    }
+    img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+    }
+
+
+    .call-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+.call-btn:hover {
+  background-color: #218838;
+}
+
+
+
+.login-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #ffffff;
+  color: #6c5ce7;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #eee;
+}
