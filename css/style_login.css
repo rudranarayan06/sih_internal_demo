@@ -1041,4 +1041,33 @@ body {
         padding: 0.75rem 1.5rem;
         font-size: 0.9rem;
     }
+
+}
+
+/* Eye icon on password */
+.toggle-eye {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+/* Visibility toggle */
+.visibility-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.visibility-toggle i {
+  font-size: 18px;
+  color: #fff;
+}
+
+#visibilityText {
+  font-size: 14px;
 }
