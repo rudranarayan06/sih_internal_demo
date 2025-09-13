@@ -195,9 +195,9 @@ button:hover {
     }
 
     .navbar-logo {
-      height: 150px;
+      height: 50px;
       width: auto;
-      max-width: 300px;
+      max-width: 160px;
       object-fit: contain;
     }
 
@@ -561,6 +561,7 @@ table th { background:#f3f4f6 }
 
     /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+
 
 
 
