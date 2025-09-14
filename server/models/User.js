@@ -41,6 +41,12 @@ const userSchema = new mongoose.Schema({
             'PhD Student'
         ]
     },
+    age: {
+        type: Number,
+        required: [true, 'Age is required'],
+        min: [10, 'Age must be at least 10'],
+        max: [100, 'Age cannot exceed 100']
+    },
     password: {
         type: String,
         required: [true, 'Password is required'],

@@ -49,6 +49,10 @@ router.post('/signup', [
         ])
         .withMessage('Invalid academic year selected'),
     
+    body('age')
+        .isInt({ min: 10, max: 100 })
+        .withMessage('Age must be a number between 10 and 100'),
+    
     body('password')
         .isLength({ min: 8 })
         .withMessage('Password must be at least 8 characters long')
@@ -74,7 +78,7 @@ router.post('/signup', [
             });
         }
 
-        const { firstName, lastName, email, university, academicYear, password } = req.body;
+        const { firstName, lastName, email, university, academicYear, age, password } = req.body;
 
         // Check if user already exists
         const existingUser = await User.findOne({ email });
@@ -92,6 +96,7 @@ router.post('/signup', [
             email,
             university,
             academicYear,
+            age,
             password
         });
 
@@ -110,7 +115,8 @@ router.post('/signup', [
                 lastName: user.lastName,
                 email: user.email,
                 university: user.university,
-                academicYear: user.academicYear
+                academicYear: user.academicYear,
+                age: user.age
             }
         });
 

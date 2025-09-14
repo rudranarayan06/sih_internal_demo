@@ -10,20 +10,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-      <h1>MIND MESH</h1>
-    <nav class="navbar">
-         <div class="logo-container">
-           <img src="assets/logo.png" alt="MindMesh Logo" class="navbar-logo">
-         </div>
-      <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="peer.html">Peer Community</a></li>
-            <li><a href="counsel.html">Counsellors</a></li>
-          <li><a href="about.html">About Us</a></li>
-         <li><a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
-        </ul>
-</nav>
     <div class="app-container">
         <!-- Authentication Page -->
         <div id="auth-page" class="auth-page">
@@ -56,6 +42,14 @@
 
                 <!-- Right Auth Section -->
                 <div class="auth-section">
+                    <!-- Back to Home Button -->
+                    <div class="back-to-home">
+                        <button onclick="window.location.href='index.html'" class="btn-back-home">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Home
+                        </button>
+                    </div>
+                    
                     <!-- Login Form -->
                     <div id="login-form" class="auth-form active">
                         <div class="form-header">
@@ -85,20 +79,20 @@
                                     </button>
                                 </div>
                             </div>
-                            
-                        </form>
 
-                        <div class="btn-group">
-  <button id="privateBtn">Private</button>
-  <button id="publicBtn">Public</button>
-</div>
+                            <div class="btn-group">
+                                <button id="privateBtn" type="button">Private</button>
+                                <button id="publicBtn" type="button">Public</button>
+                            </div>
 
-<!-- Age Input -->
-<label for="age">Enter Your Age:</label>
-<input type="number" id="age" placeholder="Type your age" min="10" max="100">
-<p id="ageError" class="error"></p>
+                            <!-- Age Input -->
+                            <div class="form-group">
+                                <label for="age">Enter Your Age:</label>
+                                <input type="number" id="age" placeholder="Type your age" min="10" max="100">
+                                <p id="ageError" class="error"></p>
+                            </div>
 
-                        <button type="submit" class="btn-primary">
+                            <button type="submit" class="btn-primary">
                                 <span class="btn-text">Sign In</span>
                                 <span class="btn-loading" style="display: none;">Signing In...</span>
                             </button>
@@ -170,6 +164,14 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="signupAge">Age</label>
+                                <div class="input-group">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <input type="number" id="signupAge" placeholder="Enter your age" min="10" max="100" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="signupPassword">Password</label>
                                 <div class="input-group">
                                     <i class="fas fa-lock"></i>
@@ -210,7 +212,7 @@
             <div class="dashboard-container">
                 <!-- Header -->
                 <header class="dashboard-header">
-                    <div class="header-brand">
+                    <div class="header-brand" onclick="window.location.href='index.html'" style="cursor: pointer;">
                         <i class="fas fa-heart"></i>
                         <h1>MindMesh</h1>
                     </div>
@@ -394,31 +396,223 @@
                         </div>
                     </div>
 
-                    <!-- Other Tabs -->
+                    <!-- Sessions Tab -->
                     <div id="sessions-tab" class="tab-content">
-                        <div class="coming-soon">
-                            <i class="fas fa-heart"></i>
-                            <h3>Sessions</h3>
+                        <div class="section-header">
+                            <h3><i class="fas fa-calendar-alt"></i> My Sessions</h3>
                             <p>Track your mental wellness sessions and progress</p>
-                            <span class="coming-soon-text">Coming Soon...</span>
                         </div>
+                        
+                        <!-- Booked Sessions Display -->
+                        <div id="bookedSessionsContainer" style="display: none; margin-bottom: 20px;">
+                            <h4 style="margin-bottom: 15px; color: var(--primary-color);">
+                                <i class="fas fa-calendar-check"></i> Recently Booked Sessions
+                            </h4>
+                            <div id="bookedSessionsList"></div>
+                        </div>
+                        
+                        <div class="sessions-list">
+                            <div class="session-card">
+                                <div class="session-info">
+                                    <h4>Stress Management Session</h4>
+                                    <p><i class="fas fa-clock"></i> March 15, 2024 - 2:00 PM</p>
+                                    <p><i class="fas fa-user"></i> Dr. Sarah Johnson</p>
+                                </div>
+                                <div class="session-status completed">
+                                    <span>Completed</span>
+                                </div>
+                            </div>
+                            
+                            <div class="session-card">
+                                <div class="session-info">
+                                    <h4>Mindfulness & Meditation</h4>
+                                    <p><i class="fas fa-clock"></i> March 20, 2024 - 10:00 AM</p>
+                                    <p><i class="fas fa-user"></i> Dr. Michael Chen</p>
+                                </div>
+                                <div class="session-status upcoming">
+                                    <span>Upcoming</span>
+                                </div>
+                            </div>
+                            
+                            <div class="session-card">
+                                <div class="session-info">
+                                    <h4>Anxiety Coping Strategies</h4>
+                                    <p><i class="fas fa-clock"></i> March 25, 2024 - 3:30 PM</p>
+                                    <p><i class="fas fa-user"></i> Dr. Emily Rodriguez</p>
+                                </div>
+                                <div class="session-status scheduled">
+                                    <span>Scheduled</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-primary" style="margin-top: 20px;" onclick="openBookSessionModal()">
+                            <i class="fas fa-plus"></i> Book New Session
+                        </button>
                     </div>
 
+                    <!-- Resources Tab -->
                     <div id="resources-tab" class="tab-content">
-                        <div class="coming-soon">
-                            <i class="fas fa-book-open"></i>
-                            <h3>Learning Resources</h3>
+                        <div class="section-header">
+                            <h3><i class="fas fa-book-open"></i> Learning Resources</h3>
                             <p>Access wellness guides, videos, and educational content</p>
-                            <span class="coming-soon-text">Coming Soon...</span>
+                        </div>
+                        
+                        <div class="resources-grid">
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <div class="resource-content">
+                                    <h4>Guided Meditation Videos</h4>
+                                    <p>5-20 minute guided sessions for relaxation and mindfulness</p>
+                                    <span class="resource-type">Video Series</span>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-file-pdf"></i>
+                                </div>
+                                <div class="resource-content">
+                                    <h4>Stress Management Guide</h4>
+                                    <p>Comprehensive PDF guide with practical stress reduction techniques</p>
+                                    <span class="resource-type">PDF Guide</span>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-headphones"></i>
+                                </div>
+                                <div class="resource-content">
+                                    <h4>Sleep & Relaxation Audio</h4>
+                                    <p>Calming soundscapes and sleep stories for better rest</p>
+                                    <span class="resource-type">Audio Content</span>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="resource-content">
+                                    <h4>Mental Health Toolkit</h4>
+                                    <p>Evidence-based exercises and self-assessment tools</p>
+                                    <span class="resource-type">Interactive Tools</span>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="resource-content">
+                                    <h4>Academic Wellness Tips</h4>
+                                    <p>Strategies for managing academic stress and performance anxiety</p>
+                                    <span class="resource-type">Study Guide</span>
+                                </div>
+                            </div>
+                            
+                            <div class="resource-card">
+                                <div class="resource-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="resource-content">
+                                    <h4>Self-Care Routine Builder</h4>
+                                    <p>Create personalized daily wellness routines</p>
+                                    <span class="resource-type">Planning Tool</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Community Tab -->
                     <div id="community-tab" class="tab-content">
-                        <div class="coming-soon">
-                            <i class="fas fa-users"></i>
-                            <h3>Community Support</h3>
+                        <div class="section-header">
+                            <h3><i class="fas fa-users"></i> Community Support</h3>
                             <p>Connect with peers and share your wellness journey</p>
-                            <span class="coming-soon-text">Coming Soon...</span>
+                        </div>
+                        
+                        <div class="community-section">
+                            <div class="community-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">1,247</span>
+                                    <span class="stat-label">Active Members</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">89</span>
+                                    <span class="stat-label">Discussion Topics</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">324</span>
+                                    <span class="stat-label">Support Messages</span>
+                                </div>
+                            </div>
+                            
+                            <div class="discussion-topics">
+                                <h4>Recent Discussions</h4>
+                                
+                                <!-- Created Discussions Display -->
+                                <div id="createdDiscussionsContainer" style="display: none; margin-bottom: 20px;">
+                                    <h5 style="margin-bottom: 15px; color: var(--primary-color);">
+                                        <i class="fas fa-comments"></i> Your Recent Discussions
+                                    </h5>
+                                    <div id="createdDiscussionsList"></div>
+                                </div>
+                                
+                                <div class="topic-card">
+                                    <div class="topic-info">
+                                        <h5>Managing Exam Anxiety</h5>
+                                        <p>Tips and strategies for staying calm during finals week</p>
+                                        <div class="topic-meta">
+                                            <span><i class="fas fa-user"></i> Anonymous Student</span>
+                                            <span><i class="fas fa-comments"></i> 12 replies</span>
+                                            <span><i class="fas fa-clock"></i> 2 hours ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="topic-card">
+                                    <div class="topic-info">
+                                        <h5>Healthy Study Habits</h5>
+                                        <p>Share your best practices for maintaining work-life balance</p>
+                                        <div class="topic-meta">
+                                            <span><i class="fas fa-user"></i> Sarah M.</span>
+                                            <span><i class="fas fa-comments"></i> 8 replies</span>
+                                            <span><i class="fas fa-clock"></i> 5 hours ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="topic-card">
+                                    <div class="topic-info">
+                                        <h5>Mindfulness for Beginners</h5>
+                                        <p>Getting started with meditation and mindfulness practices</p>
+                                        <div class="topic-meta">
+                                            <span><i class="fas fa-user"></i> Alex Chen</span>
+                                            <span><i class="fas fa-comments"></i> 15 replies</span>
+                                            <span><i class="fas fa-clock"></i> 1 day ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="topic-card">
+                                    <div class="topic-info">
+                                        <h5>Dealing with Homesickness</h5>
+                                        <p>Support for students adjusting to college life</p>
+                                        <div class="topic-meta">
+                                            <span><i class="fas fa-user"></i> Maria Rodriguez</span>
+                                            <span><i class="fas fa-comments"></i> 6 replies</span>
+                                            <span><i class="fas fa-clock"></i> 2 days ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="btn-primary" style="margin-top: 20px;" onclick="openDiscussionModal()">
+                                <i class="fas fa-plus"></i> Start New Discussion
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -429,9 +623,101 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast"></div>
 
+    <!-- Book Session Modal -->
+    <div id="bookSessionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-calendar-alt"></i> Book New Session</h3>
+                <span class="close" onclick="closeBookSessionModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="bookSessionForm">
+                    <div class="form-group">
+                        <label for="sessionType">Session Type</label>
+                        <select id="sessionType" required>
+                            <option value="">Select session type</option>
+                            <option value="individual">Individual Counseling</option>
+                            <option value="group">Group Therapy</option>
+                            <option value="stress">Stress Management</option>
+                            <option value="anxiety">Anxiety Support</option>
+                            <option value="mindfulness">Mindfulness & Meditation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredDate">Preferred Date</label>
+                        <input type="date" id="preferredDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredTime">Preferred Time</label>
+                        <select id="preferredTime" required>
+                            <option value="">Select time</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sessionNotes">Additional Notes (Optional)</label>
+                        <textarea id="sessionNotes" rows="3" placeholder="Any specific concerns or topics you'd like to discuss..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeBookSessionModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Book Session</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Discussion Modal -->
+    <div id="discussionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-comments"></i> Start New Discussion</h3>
+                <span class="close" onclick="closeDiscussionModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="discussionForm">
+                    <div class="form-group">
+                        <label for="discussionTitle">Discussion Title</label>
+                        <input type="text" id="discussionTitle" placeholder="Enter a descriptive title for your discussion..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="discussionCategory">Category</label>
+                        <select id="discussionCategory" required>
+                            <option value="">Select category</option>
+                            <option value="general">General Support</option>
+                            <option value="academic">Academic Stress</option>
+                            <option value="anxiety">Anxiety & Worry</option>
+                            <option value="depression">Depression Support</option>
+                            <option value="relationships">Relationships</option>
+                            <option value="self-care">Self-Care Tips</option>
+                            <option value="mindfulness">Mindfulness & Meditation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="discussionContent">Your Message</label>
+                        <textarea id="discussionContent" rows="4" placeholder="Share your thoughts, ask questions, or start a meaningful conversation..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; cursor: pointer;">
+                            <input type="checkbox" id="anonymousPost" style="margin-right: 8px;">
+                            Post anonymously
+                        </label>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeDiscussionModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Start Discussion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="js/script_login.js"></script>
 
 </body>
 </html>
-
-
