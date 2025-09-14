@@ -6,11 +6,9 @@ require('dotenv').config();
 
 const app = express();
 
-// Enhanced CORS configuration for Vercel
+// CORS configuration
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' 
-        ? [process.env.FRONTEND_URL, /\.vercel\.app$/] 
-        : ['http://localhost:3000', 'http://localhost:5000', 'http://127.0.0.1:5500'],
+    origin: ['http://localhost:3000', 'http://localhost:5000', 'http://127.0.0.1:5500'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -76,14 +74,8 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-// For Vercel, we export the app instead of listening
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-        console.log(`Frontend available at: http://localhost:${PORT}`);
-        console.log(`API endpoints at: http://localhost:${PORT}/api`);
-    });
-}
-
-// Export for Vercel
-module.exports = app;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Frontend available at: http://localhost:${PORT}`);
+    console.log(`API endpoints at: http://localhost:${PORT}/api`);
+});

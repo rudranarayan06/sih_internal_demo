@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "build": "echo 'Build complete'",
-    "vercel-build": "echo 'Vercel build complete'"
+    "build": "echo 'Build complete'"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -28,8 +27,7 @@
     "mental-health",
     "students",
     "nodejs",
-    "mongodb",
-    "vercel"
+    "mongodb"
   ],
   "author": "Team Innovatrix",
   "license": "MIT"
