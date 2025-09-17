@@ -272,6 +272,12 @@ body {
 .form select:hover {
     border-color: var(--primary-glow);
 }
+.navbar-logo {
+  width: 140px;
+  height: auto;
+  margin-right: 20px;
+  display: block;
+}
 
 /* Improved input group styling */
 .input-group {
@@ -1621,6 +1627,7 @@ body {
 .toast.info {
     border-left-color: var(--primary-color);
 }
+
 
 
 
