@@ -20,6 +20,11 @@ nav {
   font-weight: bold;
   letter-spacing: 2px;
 }
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
 
 .nav-links {
   list-style: none;
@@ -595,6 +600,7 @@ table th { background:#f3f4f6 }
 
     /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+
 
 
 
