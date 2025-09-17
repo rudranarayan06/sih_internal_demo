@@ -31,6 +31,169 @@
     <h1>Peer Community</h1>
     <p>Share your thoughts, support others, and grow together in a safe space 🌸</p>
   </section>
+ <!-- Group Discussions Section -->
+<section class="gd-section">
+  <h2 class="gd-title">Group Discussions</h2>
+  <p class="gd-subtitle">Join or create discussion groups and share your thoughts with peers.</p>
+  
+  <div class="gd-container">
+    <!-- Create Group Card -->
+    <div class="gd-card">
+      <div class="gd-icon">➕</div>
+      <h3>Create a Group</h3>
+      <p>Start your own discussion group on any topic (e.g., Exam Stress, Happiness, Motivation).</p>
+      <a href="#" class="gd-btn">Create Group</a>
+    </div>
+
+    <!-- Join Group Card -->
+    <div class="gd-card">
+      <div class="gd-icon">👥</div>
+      <h3>Join a Group</h3>
+      <p>Explore existing groups and connect with peers going through similar challenges.</p>
+      <a href="#" class="gd-btn">Join Group</a>
+    </div>
+  </div>
+
+  <!-- Example Groups List -->
+  <div class="gd-list">
+    <h4>Popular Groups</h4>
+    <ul>
+      <li>📘 Exam Stress GD <button class="join-btn">Join</button></li>
+      <li>😊 Can’t Be Happy <button class="join-btn">Join</button></li>
+      <li>💬 Daily Motivation <button class="join-btn">Join</button></li>
+      <li>🧠 Mental Wellness <button class="join-btn">Join</button></li>
+    </ul>
+  </div>
+</section>
+
+<style>
+/* Group Discussion Section */
+.gd-section {
+  text-align: center;
+  padding: 50px 20px;
+  margin: 40px auto;
+  max-width: 1100px;
+  background: #f9fbff;
+  border-radius: 16px;
+  box-shadow: 0px 6px 20px rgba(0,0,0,0.05);
+}
+
+.gd-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a237e;
+  margin-bottom: 10px;
+}
+
+.gd-subtitle {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.gd-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.gd-card {
+  background: white;
+  padding: 25px 20px;
+  border-radius: 14px;
+  width: 280px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.gd-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.gd-icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.gd-card h3 {
+  font-size: 1.3rem;
+  color: #1a237e;
+  margin-bottom: 8px;
+}
+
+.gd-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.gd-btn {
+  display: inline-block;
+  text-decoration: none;
+  background: #1a73e8;
+  color: white;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
+
+.gd-btn:hover {
+  background: #0d47a1;
+}
+
+.gd-list {
+  margin-top: 20px;
+  text-align: left;
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.gd-list h4 {
+  margin-bottom: 15px;
+  color: #1a237e;
+  font-size: 1.2rem;
+}
+
+.gd-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.gd-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 1rem;
+}
+
+.gd-list li:last-child {
+  border-bottom: none;
+}
+
+.join-btn {
+  background: #4caf50;
+  border: none;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.join-btn:hover {
+  background: #2e7d32;
+}
+</style>
+
+
   <main>
     <section class="story-section">
       <div class="view-story">
@@ -46,16 +209,7 @@
       <div class="post-story">
         <h2>Post Story</h2>
         <form id="storyForm">
-          <input type="text" placeholder="Your Name" required />
           <textarea placeholder="Share your story..." required></textarea>
-          <div class="btn-group">
-            <button id="privateBtn">Private</button>
-            <button id="publicBtn">Public</button>
-          </div>
-          <!-- Age Input -->
-          <label for="age">Enter Your Age:</label>
-          <input type="number" id="age" placeholder="Type your age" min="10" max="100">
-          <p id="ageError" class="error"></p>
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -115,3 +269,4 @@
 </body>
 
 </html>
+
