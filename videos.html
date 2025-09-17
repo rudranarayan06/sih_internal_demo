@@ -1,0 +1,84 @@
+<section class="videos">
+  <h2>🎬 Mental Health Videos</h2>
+  <p class="subtitle">Relax, learn, and grow with expert talks, meditations, and motivational clips.</p>
+
+  <div class="video-grid">
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/2OEL4P1Rz04" allowfullscreen></iframe>
+      <h3>🌿 Managing Stress</h3>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/ZToicYcHIOU" allowfullscreen></iframe>
+      <h3>🧘 Mindfulness Basics</h3>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/inpok4MKVLM" allowfullscreen></iframe>
+      <h3>☀️ 10-Minute Meditation</h3>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/8QyVZrV3d3o" allowfullscreen></iframe>
+      <h3>💡 Boosting Positivity</h3>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/c1Ndym-IsmI" allowfullscreen></iframe>
+      <h3>❤️ Overcoming Anxiety</h3>
+    </div>
+  </div>
+</section>
+
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #ede7f6);
+    margin: 0;
+  }
+  .videos {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .videos h2 {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #1a237e, #1976d2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 40px;
+  }
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+  }
+  .video-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: fadeInUp 1s ease;
+  }
+  .video-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 12px 30px rgba(0,0,0,0.2);
+  }
+  .video-card iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+  }
+  .video-card h3 {
+    margin: 15px;
+    font-size: 1.1rem;
+    color: #1a237e;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
