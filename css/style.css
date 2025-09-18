@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* === Peer Community New Structure Styles === */
 header {
   width: 100%;
@@ -46,6 +52,7 @@ nav {
 
 .banner {
   background-color: #66bb6a;
+  width:100vw;
   text-align: center;
   padding: 3rem 1rem 2rem 1rem;
   color: white;
@@ -257,9 +264,13 @@ button:hover {
 
 
 
+ html, body {
+  overflow-x: hidden;
+}
+
  
- 
- body { font-family: 'Poppins', sans-serif; margin: 0; background: #f8f9fa; color: #212529; }
+ body { font-family: 'Poppins', sans-serif; margin: 0; background: #f8f9fa; color: #212529; background: #4c6ef5;
+  margin: 0; }
   /*  header { background: linear-gradient(135deg, #4c6ef5, #364fc7); color: white; padding: 15px 40px; position: sticky; top: 0; z-index: 1000; }*/
     nav { display: flex; justify-content: space-between; align-items: center; }
     nav ul { list-style: none; display: flex; gap: 25px; }
@@ -285,6 +296,7 @@ button:hover {
     .hero { 
       text-align: center; padding: 100px 20px; 
       background: linear-gradient(to right, #4c6ef5, #5f3dc4);
+      width:100vw;
       color: white; animation: fadeIn 1.2s ease-in-out;
     }
     .hero h1 { font-size: 44px; margin-bottom: 20px; font-weight: 700; }
@@ -597,6 +609,7 @@ table th { background:#f3f4f6 }
 
     /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+
 
 
 
