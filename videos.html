@@ -1,84 +1,273 @@
-<section class="videos">
-  <h2>🎬 Mental Health Videos</h2>
-  <p class="subtitle">Relax, learn, and grow with expert talks, meditations, and motivational clips.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Videos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f7fb;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
+    header h1 {
+      color: #2a4d9b;
+    }
+    #searchBar {
+      width: 60%;
+      max-width: 500px;
+      padding: 10px;
+      margin: 20px auto;
+      display: block;
+      border: 2px solid #2a4d9b;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+    .filters {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .filters button {
+      background: #2a4d9b;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      margin: 5px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .filters button:hover {
+      background: #1e3570;
+    }
+    .category {
+      margin: 40px auto;
+      width: 90%;
+      max-width: 1200px;
+    }
+    .category h2 {
+      margin-bottom: 20px;
+      color: #444;
+      border-left: 5px solid #2a4d9b;
+      padding-left: 10px;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .video-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+      position: relative;
+    }
+    .video-card:hover {
+      transform: translateY(-5px);
+    }
+    .video-card iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+    }
+    .video-content {
+      padding: 15px;
+    }
+    .video-content h3 {
+      margin: 5px 0;
+      font-size: 18px;
+      color: #2a4d9b;
+    }
+    .video-content p {
+      font-size: 14px;
+      color: #555;
+    }
+    .fav-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #fff;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    /* Dark mode */
+    body.dark {
+      background: #1e1e1e;
+      color: #eee;
+    }
+    body.dark .video-card {
+      background: #2a2a2a;
+      box-shadow: 0 4px 10px rgba(255,255,255,0.1);
+    }
+    body.dark header h1, body.dark .category h2 {
+      color: #eee;
+    }
+    .dark-toggle {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: #2a4d9b;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
 
-  <div class="video-grid">
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/2OEL4P1Rz04" allowfullscreen></iframe>
-      <h3>🌿 Managing Stress</h3>
-    </div>
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/ZToicYcHIOU" allowfullscreen></iframe>
-      <h3>🧘 Mindfulness Basics</h3>
-    </div>
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/inpok4MKVLM" allowfullscreen></iframe>
-      <h3>☀️ 10-Minute Meditation</h3>
-    </div>
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/8QyVZrV3d3o" allowfullscreen></iframe>
-      <h3>💡 Boosting Positivity</h3>
-    </div>
-    <div class="video-card">
-      <iframe src="https://www.youtube.com/embed/c1Ndym-IsmI" allowfullscreen></iframe>
-      <h3>❤️ Overcoming Anxiety</h3>
+  <header>
+    <h1>Mental Health Video Library</h1>
+    <p>Find the right video for your mental wellness journey</p>
+    <input type="text" id="searchBar" placeholder="🔍 Search videos by topic (e.g. stress, anxiety, sleep)">
+  </header>
+
+  <!-- Dark mode toggle -->
+  <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+  <!-- Filter buttons -->
+  <div class="filters">
+    <button onclick="filterCategory('all')">All</button>
+    <button onclick="filterCategory('stress')">Stress</button>
+    <button onclick="filterCategory('meditation')">Meditation</button>
+    <button onclick="filterCategory('positivity')">Positivity</button>
+    <button onclick="filterCategory('anxiety')">Anxiety</button>
+    <button onclick="filterCategory('favorites')">❤️ Favorites</button>
+  </div>
+
+  <!-- Stress Category -->
+  <div class="category" data-category="stress">
+    <h2>Stress Management</h2>
+    <div class="video-grid">
+      <div class="video-card" data-title="Managing Stress">
+        <button class="fav-btn" onclick="addFavorite(this)">♡</button>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID1" allowfullscreen></iframe>
+        <div class="video-content">
+          <h3>Managing Stress</h3>
+          <p>Learn effective strategies to cope with stress and build resilience.</p>
+        </div>
+      </div>
     </div>
   </div>
-</section>
 
-<style>
-  body {
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #e3f2fd, #ede7f6);
-    margin: 0;
-  }
-  .videos {
-    text-align: center;
-    padding: 60px 20px;
-  }
-  .videos h2 {
-    font-size: 2.5rem;
-    background: linear-gradient(45deg, #1a237e, #1976d2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
-  }
-  .subtitle {
-    font-size: 1.2rem;
-    color: #444;
-    margin-bottom: 40px;
-  }
-  .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 0 20px;
-  }
-  .video-card {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0px 6px 20px rgba(0,0,0,0.15);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    animation: fadeInUp 1s ease;
-  }
-  .video-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 12px 30px rgba(0,0,0,0.2);
-  }
-  .video-card iframe {
-    width: 100%;
-    height: 200px;
-    border: none;
-  }
-  .video-card h3 {
-    margin: 15px;
-    font-size: 1.1rem;
-    color: #1a237e;
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
+  <!-- Meditation Category -->
+  <div class="category" data-category="meditation">
+    <h2>Meditation & Mindfulness</h2>
+    <div class="video-grid">
+      <div class="video-card" data-title="Mindfulness Basics">
+        <button class="fav-btn" onclick="addFavorite(this)">♡</button>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID2" allowfullscreen></iframe>
+        <div class="video-content">
+          <h3>Mindfulness Basics</h3>
+          <p>Introduction to mindfulness practices to stay calm and present.</p>
+        </div>
+      </div>
+      <div class="video-card" data-title="10-Minute Meditation">
+        <button class="fav-btn" onclick="addFavorite(this)">♡</button>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID3" allowfullscreen></iframe>
+        <div class="video-content">
+          <h3>10-Minute Meditation</h3>
+          <p>A quick guided meditation session to relax and reset your mind.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Positivity Category -->
+  <div class="category" data-category="positivity">
+    <h2>Boosting Positivity</h2>
+    <div class="video-grid">
+      <div class="video-card" data-title="Boosting Positivity">
+        <button class="fav-btn" onclick="addFavorite(this)">♡</button>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID4" allowfullscreen></iframe>
+        <div class="video-content">
+          <h3>Boosting Positivity</h3>
+          <p>Uplift your mood with motivational insights and positive thoughts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Anxiety Category -->
+  <div class="category" data-category="anxiety">
+    <h2>Overcoming Anxiety</h2>
+    <div class="video-grid">
+      <div class="video-card" data-title="Overcoming Anxiety">
+        <button class="fav-btn" onclick="addFavorite(this)">♡</button>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID5" allowfullscreen></iframe>
+        <div class="video-content">
+          <h3>Overcoming Anxiety</h3>
+          <p>Practical techniques to reduce anxiety and feel more in control.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Favorites Section -->
+  <div class="category" id="favorites-section" style="display:none;">
+    <h2>❤️ My Favorites</h2>
+    <div class="video-grid" id="favorites-grid"></div>
+  </div>
+
+  <script>
+    // Search function
+    const searchBar = document.getElementById("searchBar");
+    searchBar.addEventListener("keyup", function() {
+      let filter = searchBar.value.toLowerCase();
+      let videoCards = document.querySelectorAll(".video-card");
+      videoCards.forEach(card => {
+        let title = card.dataset.title.toLowerCase();
+        if (title.includes(filter)) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+
+    // Filter by category
+    function filterCategory(cat) {
+      document.querySelectorAll(".category").forEach(section => {
+        if (cat === "all") {
+          section.style.display = "";
+        } else if (cat === "favorites") {
+          section.style.display = "none";
+          document.getElementById("favorites-section").style.display = "";
+        } else {
+          if (section.dataset.category === cat) {
+            section.style.display = "";
+          } else {
+            section.style.display = "none";
+          }
+          document.getElementById("favorites-section").style.display = "none";
+        }
+      });
+    }
+
+    // Dark mode
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    // Favorites
+    function addFavorite(btn) {
+      let card = btn.closest(".video-card").cloneNode(true);
+      btn.textContent = "❤️";
+      let favGrid = document.getElementById("favorites-grid");
+      favGrid.appendChild(card);
+      document.getElementById("favorites-section").style.display = "";
+    }
+  </script>
+
+</body>
+</html>
