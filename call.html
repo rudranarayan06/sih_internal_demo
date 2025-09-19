@@ -5,6 +5,8 @@
   <title>Live Video Call - Counsellor</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
  <!-- <style>
     body {
       font-family: Arial, sans-serif;
@@ -55,9 +57,13 @@
       <div class="status-text" id="errorMsg">Unable to access camera or microphone.</div>
     </div>
     <div class="control-panel">
-      <button class="control-btn" id="mic-btn">🎤 Mic Off</button>
+      <button class="control-btn" id="mic-btn"><i class="fas fa-microphone-slash"></i> Mic Off</button>
+<button class="control-btn" id="video-btn"><i class="fas fa-video-slash"></i> Video Off</button>
+<button class="end-btn" onclick="endCall()"><i class="fas fa-phone-slash"></i> End Call</button>
+
+      <!--<button class="control-btn" id="mic-btn">🎤 Mic Off</button>
       <button class="control-btn" id="video-btn">📷 Video Off</button>
-      <button class="end-btn" onclick="endCall()">❌ End Call</button>
+      <button class="end-btn" onclick="endCall()">❌ End Call</button>-->
     </div>
   </div>
 
@@ -134,7 +140,57 @@
   </script>
 
 </body>-->
+  <script>
+  const video = document.getElementById('localVideo');
+  const errorMsg = document.getElementById('errorMsg');
+  let stream;
+
+  async function startCamera() {
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      video.srcObject = stream;
+    } catch (err) {
+      console.error('Error accessing media devices.', err);
+      errorMsg.textContent = 'Unable to access camera or microphone.';
+    }
+  }
+
+  function endCall() {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+    }
+    alert("Call ended.");
+    window.location.href = "index.html";
+  }
+document.getElementById('mic-btn').addEventListener('click', function () {
+  const icon = this.querySelector('i');
+  if (icon.classList.contains('fa-microphone-slash')) {
+    icon.classList.replace('fa-microphone-slash', 'fa-microphone');
+    this.innerHTML = '<i class="fas fa-microphone"></i> Mic On';
+  } else {
+    icon.classList.replace('fa-microphone', 'fa-microphone-slash');
+    this.innerHTML = '<i class="fas fa-microphone-slash"></i> Mic Off';
+  }
+});
+
+document.getElementById('video-btn').addEventListener('click', function () {
+  const icon = this.querySelector('i');
+  if (icon.classList.contains('fa-video-slash')) {
+    icon.classList.replace('fa-video-slash', 'fa-video');
+    this.innerHTML = '<i class="fas fa-video"></i> Video On';
+  } else {
+    icon.classList.replace('fa-video', 'fa-video-slash');
+    this.innerHTML = '<i class="fas fa-video-slash"></i> Video Off';
+  }
+});
+
+ 
+
+  window.onload = startCamera;
+</script>
+
 </html>
+
 
 
 
