@@ -61,6 +61,14 @@
   <!-- Counsellor Cards -->
   <section class="counsellors">
     <div class="card">
+      <div class="card-actions" style="display: flex; gap: 12px; justify-content: center;">
+  <button class="cta-btn" onclick="alert('Booking slot...')">
+    <i class="fas fa-calendar-check"></i> Book Slot
+  </button>
+  <button class="cta-btn call-btn" onclick="openCallModal(event)">
+    <i class="fas fa-phone"></i> Call
+  </button>
+</div>
       <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Counsellor">
       <h3>Dr. Anjali Sharma</h3>
       <p>Psychology Dept</p>
@@ -97,8 +105,15 @@
   </div>
 </div>-->
 
-
     <div class="card">
+     <div class="card-actions" style="display: flex; gap: 12px; justify-content: center;">
+  <button class="cta-btn" onclick="alert('Booking slot...')">
+    <i class="fas fa-calendar-check"></i> Book Slot
+  </button>
+  <button class="cta-btn call-btn" onclick="openCallModal(event)">
+    <i class="fas fa-phone"></i> Call
+  </button>
+</div>
       <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Counsellor">
       <h3>Mr. Ramesh Kumar</h3>
       <p>Student Counsellor</p>
@@ -135,6 +150,14 @@
 </div>-->
 
     <div class="card">
+      <div class="card-actions" style="display: flex; gap: 12px; justify-content: center;">
+  <button class="cta-btn" onclick="alert('Booking slot...')">
+    <i class="fas fa-calendar-check"></i> Book Slot
+  </button>
+  <button class="cta-btn call-btn" onclick="openCallModal(event)">
+    <i class="fas fa-phone"></i> Call
+  </button>
+</div>
       <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Counsellor">
       <h3>Dr. Neha Verma</h3>
       <p>Wellness Specialist</p>
@@ -177,6 +200,28 @@
   <div class="floating-btn" onclick="alert('📞 Dialing 24x7 Helpline...')">
     <i class="fa-solid fa-phone"></i>
   </div>
+  <!-- Call Option Modal -->
+<div id="callModal" class="modal" style="display:none; position:fixed; z-index:2000; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.35); align-items:center; justify-content:center;">
+  <div style="background:#fff; border-radius:16px; box-shadow:0 6px 24px rgba(76,110,245,0.12); padding:32px 24px; max-width:320px; margin:auto; text-align:center;">
+    <h3 style="color:#364fc7; margin-bottom:18px;">Choose Call Type</h3>
+    <button class="cta-btn" style="width:100%; margin-bottom:12px;" onclick="proceedCall('voice')"><i class="fas fa-microphone"></i> Voice Call</button>
+    <button class="cta-btn" style="width:100%;" onclick="proceedCall('video')"><i class="fas fa-video"></i> Video Call</button>
+    <br><br>
+    <button onclick="closeCallModal()" style="background:#eee; color:#364fc7; border:none; border-radius:8px; padding:8px 18px; margin-top:8px;">Cancel</button>
+  </div>
+</div>
+
+<script>
+  function openCallModal(e) {
+    document.getElementById('callModal').style.display = 'flex';
+  }
+  function closeCallModal() {
+    document.getElementById('callModal').style.display = 'none';
+  }
+  function proceedCall(type) {
+    window.location.href = 'call.html?type=' + type;
+  }
+</script>
   <!-- Footer -->
   <footer>
     <p>© 2025 MindMesh | Team Innovatrix</p>
@@ -184,6 +229,7 @@
   <script src="js/script.js"></script>
 </body>
 </html>
+
 
 
 
