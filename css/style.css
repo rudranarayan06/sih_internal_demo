@@ -134,49 +134,40 @@ button:hover {
 .social-icons a:hover img {
   filter: brightness(0.8) invert(0.8) sepia(1) hue-rotate(80deg) saturate(2);
 }
-.call-button {
-  background-color: #00bcd4;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.call-button:hover {
-  background-color: #0097a7;
-  transform: scale(1.05);
-}
 .action-buttons {
   display: flex;
-  gap: 12px;
-  margin-top: 10px;
-  justify-content: center; /* Use flex-start for left alignment */
+  gap: 16px;
+  margin-top: 12px;
+  justify-content: center;
 }
 
-.action-btn {
-  display: inline-block;
+.cta-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background-color: #4c6ef5;
   color: white;
   text-decoration: none;
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 16px;
   font-weight: 600;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.action-btn:hover {
+.cta-btn:hover {
   background-color: white;
   color: #4c6ef5;
-  transform: scale(1.05);
   border: 2px solid #4c6ef5;
+}
+
+.cta-icon {
+  font-size: 18px;
+}
+
+.cta-label {
+  font-size: 16px;
 }
 
 
@@ -666,6 +657,7 @@ table th { background:#f3f4f6 }
 
     /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+
 
 
 
