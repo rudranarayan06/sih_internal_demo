@@ -45,7 +45,56 @@
     }
   </style>
 </head>
-<body>
+  <body>
+  <div class="call-wrapper">
+    <h2>Live Video Call – Counsellor</h2>
+    <div class="video-area">
+      <video id="localVideo" autoplay playsinline muted></video>
+      <div class="status-text" id="errorMsg">Unable to access camera or microphone.</div>
+    </div>
+    <div class="control-panel">
+      <button class="control-btn" id="mic-btn">🎤 Mic Off</button>
+      <button class="control-btn" id="video-btn">📷 Video Off</button>
+      <button class="end-btn" onclick="endCall()">❌ End Call</button>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('localVideo');
+    const errorMsg = document.getElementById('errorMsg');
+    let stream;
+
+    async function startCamera() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        video.srcObject = stream;
+      } catch (err) {
+        console.error('Error accessing media devices.', err);
+        errorMsg.textContent = 'Unable to access camera or microphone.';
+      }
+    }
+
+    function endCall() {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+      alert("Call ended.");
+      window.location.href = "index.html";
+    }
+
+    document.getElementById('mic-btn').addEventListener('click', function () {
+      this.textContent = this.textContent.includes('Off') ? '🎤 Mic On' : '🎤 Mic Off';
+    });
+
+    document.getElementById('video-btn').addEventListener('click', function () {
+      this.textContent = this.textContent.includes('Off') ? '📷 Video On' : '📷 Video Off';
+    });
+
+    window.onload = startCamera;
+  </script>
+</body>
+
+<!--<body>
 
   <video id="localVideo" autoplay playsinline muted></video>
 
@@ -82,5 +131,6 @@
     window.onload = startCamera;
   </script>
 
-</body>
+</body>-->
 </html>
+
