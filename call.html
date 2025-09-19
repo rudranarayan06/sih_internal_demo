@@ -62,7 +62,11 @@
   </div>
   <div class="call-controls">
     <button class="circle-btn" id="micBtn" title="Mute"><i class="fas fa-microphone"></i></button>
-    <button class="circle-btn" id="videoBtn" title="Video"><i class="fas fa-video"></i></button>
+    <!--<button class="circle-btn" id="videoBtn" title="Video"><i class="fas fa-video"></i></button>-->
+    <button class="circle-btn" id="videoBtn" title="Toggle Video">
+  <i class="fas fa-video"></i>
+</button>
+
     <button class="circle-btn end" title="End Call" onclick="window.location.href='counsel.html'"><i class="fas fa-phone-slash"></i></button>
   </div>
   <div class="call-info">
@@ -163,21 +167,52 @@
     updateVideoIcon();
   }
 
-  micBtn.addEventListener('click', () => {
-    micOn = !micOn;
-    updateMicIcon();
-    if(localStream) {
-      localStream.getAudioTracks().forEach(track => track.enabled = micOn);
-    }
-  });
-  videoBtn.addEventListener('click', () => {
-    if(callType !== 'video') return;
-    videoOn = !videoOn;
-    updateVideoIcon();
-    if(localStream) {
-      localStream.getVideoTracks().forEach(track => track.enabled = videoOn);
-    }
-  });
+ // micBtn.addEventListener('click', () => {
+   // micOn = !micOn;
+  //  updateMicIcon();
+    //if(localStream) {
+      //localStream.getAudioTracks().forEach(track => track.enabled = micOn);
+    //}
+  //});
+  //videoBtn.addEventListener('click', () => {
+    //if(callType !== 'video') return;
+    //videoOn = !videoOn;
+    //updateVideoIcon();
+    //if(localStream) {
+     // localStream.getVideoTracks().forEach(track => track.enabled = videoOn);
+    //}
+  //});
+videoBtn.addEventListener('click', () => {
+  if (!localStream) return;
+
+  const videoTrack = localStream.getVideoTracks()[0];
+  if (!videoTrack) return;
+
+  videoTrack.enabled = !videoTrack.enabled;
+  videoOn = videoTrack.enabled;
+
+  videoBtn.innerHTML = videoOn
+    ? '<i class="fas fa-video"></i>'
+    : '<i class="fas fa-video-slash"></i>';
+
+  document.getElementById('video-status').textContent = `📷 Video: ${videoOn ? 'On' : 'Off'}`;
+});
+    micBtn.addEventListener('click', () => {
+  if (!localStream) return;
+
+  const audioTrack = localStream.getAudioTracks()[0];
+  if (!audioTrack) return;
+
+  audioTrack.enabled = !audioTrack.enabled;
+  micOn = audioTrack.enabled;
+
+  micBtn.innerHTML = micOn
+    ? '<i class="fas fa-microphone"></i>'
+    : '<i class="fas fa-microphone-slash"></i>';
+
+  document.getElementById('mic-status').textContent = `🎤 Mic: ${micOn ? 'On' : 'Off'}`;
+});
+
 
   window.onload = startCall;
 </script>
@@ -306,6 +341,7 @@ document.getElementById('video-btn').addEventListener('click', function () {
 </script>
 
 </html>
+
 
 
 
