@@ -206,16 +206,6 @@ button:hover {
   object-fit: cover;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }*/
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 video {
   width: 100%;
   max-width: 500px;
@@ -223,7 +213,7 @@ video {
   border-radius: 16px;
   background-color: black;
   object-fit: cover;
-  box-shadow: 0 0 20px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -251,43 +241,42 @@ video {
   margin-top: 20px;
 }
 .control-btn, .end-btn {
-  padding: 14px 20px;
+  padding: 14px 18px;
   font-size: 18px;
   font-weight: 600;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 10px;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .control-btn {
-  background: linear-gradient(to right, #4facfe, #00f2fe);
+  background-color: #007bff;
   color: white;
 }
 
 .control-btn:hover {
-  background: white;
-  color: #00f2fe;
-  border: 2px solid #00f2fe;
+  background-color: #ffffff;
+  color: #007bff;
+  border: 2px solid #007bff;
   transform: scale(1.08);
 }
 
 .end-btn {
-  background: linear-gradient(to right, #ff6a6a, #ff4e50);
+  background-color: #dc3545;
   color: white;
 }
 
 .end-btn:hover {
-  background: white;
-  color: #ff4e50;
-  border: 2px solid #ff4e50;
+  background-color: white;
+  color: #dc3545;
+  border: 2px solid #dc3545;
   transform: scale(1.08);
 }
-
 .status-text {
   margin-top: 12px;
   font-size: 15px;
@@ -336,26 +325,12 @@ video {
   gap: 40px;
   margin-top: 20px;
   font-size: 16px;
-  color: #555;
-  background-color: #e3f2fd;
-  padding: 10px;
-  border-radius: 12px;
+  color: #6c757d;
 }
-
 body {
   background: linear-gradient(135deg, #e0f7fa, #f0f4ff);
   font-family: 'Segoe UI', sans-serif;
 }
-.call-wrapper {
-  background: linear-gradient(135deg, #ffffff, #f0f4ff);
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  max-width: 700px;
-  width: 90%;
-  text-align: center;
-}
-
 
 
 
@@ -900,8 +875,6 @@ table th { background:#f3f4f6 }
 
     /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
-
-
 
 
 
