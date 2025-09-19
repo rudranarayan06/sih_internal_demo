@@ -291,7 +291,7 @@ videoBtn.addEventListener('click', () => {
   </script>
 
 </body>-->
-  <script>
+ <!-- <script>
   const video = document.getElementById('localVideo');
   const errorMsg = document.getElementById('errorMsg');
   let stream;
@@ -338,9 +338,40 @@ document.getElementById('video-btn').addEventListener('click', function () {
  
 
   window.onload = startCamera;
+</script>-->
+<script>
+  let localStream;
+  let videoOn = true;
+
+  async function startCamera() {
+    try {
+      localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+      document.getElementById('localVideo').srcObject = localStream;
+    } catch (err) {
+      console.error('Error accessing media devices.', err);
+    }
+  }
+
+  document.getElementById('videoBtn').addEventListener('click', () => {
+    if (!localStream) return;
+    const videoTrack = localStream.getVideoTracks()[0];
+    if (!videoTrack) return;
+
+    videoTrack.enabled = !videoTrack.enabled;
+    videoOn = videoTrack.enabled;
+
+    document.getElementById('videoBtn').innerHTML = videoOn
+      ? '<i class="fas fa-video"></i>'
+      : '<i class="fas fa-video-slash"></i>';
+
+    document.getElementById('video-status').textContent = `📷 Video: ${videoOn ? 'On' : 'Off'}`;
+  });
+
+  window.onload = startCamera;
 </script>
 
 </html>
+
 
 
 
