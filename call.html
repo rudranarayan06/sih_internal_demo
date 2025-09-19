@@ -65,7 +65,18 @@
       <button class="control-btn" id="video-btn">📷 Video Off</button>
       <button class="end-btn" onclick="endCall()">❌ End Call</button>-->
     </div>
+    <div class="floating-controls">
+  <button class="circle-btn" title="Toggle Mic"><i class="fas fa-microphone-slash"></i></button>
+  <button class="circle-btn" title="Toggle Video"><i class="fas fa-video-slash"></i></button>
+  <button class="circle-btn end" title="End Call"><i class="fas fa-phone-slash"></i></button>
+</div>
+
   </div>
+    <div class="status-bar">
+  <span id="mic-status">🎤 Mic: Off</span>
+  <span id="video-status">📷 Video: Off</span>
+</div>
+
 
   <script>
     const video = document.getElementById('localVideo');
@@ -190,6 +201,7 @@ document.getElementById('video-btn').addEventListener('click', function () {
 </script>
 
 </html>
+
 
 
 
