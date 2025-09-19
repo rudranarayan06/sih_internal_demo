@@ -84,7 +84,7 @@
         }
 
         .btn {
-            background: linear-gradient(150deg, #66bcea, #7024bd);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -334,27 +334,28 @@
             <div id="intro-section" class="intro-section">
                 <div class="emoji">🧠</div>
                 <h1>MindMash Assessment</h1>
-                <p class="subtitle">30 Mental Health Assessment Questions</p>
+
+                <p class="subtitle">10 Psychological Wellbeing Questions</p>
                 
                 <p style="margin: 20px 0; line-height: 1.6;">
-                    Welcome to your comprehensive mental health assessment. This scientifically-designed 
-                    questionnaire will help evaluate your current mental wellness across six key areas.
+                    Welcome to your psychological wellbeing assessment. This thoughtfully-designed 
+                    questionnaire will help evaluate your personal awareness, resilience, and inner growth.
                 </p>
 
                 <div class="features">
                     <div class="feature">
                         <div class="feature-icon">⏱️</div>
                         <div>
-                            <div style="font-weight: 500;">Takes 5-10 minutes</div>
-                            <div style="color: #666; font-size: 0.9rem;">30 thoughtful questions</div>
+                            <div style="font-weight: 500;">Takes 3-5 minutes</div>
+                            <div style="color: #666; font-size: 0.9rem;">10 multiple choice questions</div>
                         </div>
                     </div>
                     
                     <div class="feature">
                         <div class="feature-icon">🧠</div>
                         <div>
-                            <div style="font-weight: 500;">Six key areas</div>
-                            <div style="color: #666; font-size: 0.9rem;">Mood, anxiety, sleep, lifestyle, self-esteem, social support</div>
+                            <div style="font-weight: 500;">Self-awareness focus</div>
+                            <div style="color: #666; font-size: 0.9rem;">Values, emotions, adaptability, ethics, connection</div>
                         </div>
                     </div>
                     
@@ -387,26 +388,7 @@
                 </div>
 
                 <div class="options" id="options">
-                    <div class="option" onclick="selectOption(0)">
-                        <div class="option-icon">🌑</div>
-                        <div class="option-text">Never</div>
-                    </div>
-                    <div class="option" onclick="selectOption(1)">
-                        <div class="option-icon">🌘</div>
-                        <div class="option-text">Rarely</div>
-                    </div>
-                    <div class="option" onclick="selectOption(2)">
-                        <div class="option-icon">🌗</div>
-                        <div class="option-text">Sometimes</div>
-                    </div>
-                    <div class="option" onclick="selectOption(3)">
-                        <div class="option-icon">🌖</div>
-                        <div class="option-text">Often</div>
-                    </div>
-                    <div class="option" onclick="selectOption(4)">
-                        <div class="option-icon">🌕</div>
-                        <div class="option-text">Always</div>
-                    </div>
+                    <!-- Options will be dynamically populated -->
                 </div>
 
                 <div class="navigation">
@@ -484,47 +466,116 @@
     <script>
         // Assessment data
         const questions = [
-            // General Mood & Feelings
-            { id: 1, category: "🧠 General Mood & Feelings", text: "How often do you feel sad or down without a clear reason?", reverse: false },
-            { id: 2, category: "🧠 General Mood & Feelings", text: "Do you find it hard to enjoy things you used to like?", reverse: false },
-            { id: 3, category: "🧠 General Mood & Feelings", text: "How often do you feel emotionally drained or exhausted?", reverse: false },
-            { id: 4, category: "🧠 General Mood & Feelings", text: "Do you feel hopeful about the future?", reverse: true },
-            { id: 5, category: "🧠 General Mood & Feelings", text: "How often do you feel irritable or get annoyed easily?", reverse: false },
-
-            // Stress & Anxiety
-            { id: 6, category: "😰 Stress & Anxiety", text: "How often do you feel tense, nervous, or anxious?", reverse: false },
-            { id: 7, category: "😰 Stress & Anxiety", text: "Do you worry excessively about small things?", reverse: false },
-            { id: 8, category: "😰 Stress & Anxiety", text: "Do you have trouble relaxing after a stressful day?", reverse: false },
-            { id: 9, category: "😰 Stress & Anxiety", text: "How often do you feel restless or unable to sit still?", reverse: false },
-            { id: 10, category: "😰 Stress & Anxiety", text: "Do you feel panic or fear in certain situations?", reverse: false },
-
-            // Sleep & Energy
-            { id: 11, category: "💤 Sleep & Energy", text: "How often do you have trouble falling asleep or staying asleep?", reverse: false },
-            { id: 12, category: "💤 Sleep & Energy", text: "Do you wake up feeling rested and energized?", reverse: true },
-            { id: 13, category: "💤 Sleep & Energy", text: "Do you often feel tired even after a full night's sleep?", reverse: false },
-            { id: 14, category: "💤 Sleep & Energy", text: "How often do you oversleep or sleep too little?", reverse: false },
-            { id: 15, category: "💤 Sleep & Energy", text: "Do you rely on caffeine or stimulants to get through the day?", reverse: false },
-
-            // Lifestyle & Habits
-            { id: 16, category: "🍎 Lifestyle & Habits", text: "Do you eat regularly and maintain a balanced diet?", reverse: true },
-            { id: 17, category: "🍎 Lifestyle & Habits", text: "How often do you exercise or engage in physical activity?", reverse: true },
-            { id: 18, category: "🍎 Lifestyle & Habits", text: "Do you use alcohol, smoking, or substances to cope with stress?", reverse: false },
-            { id: 19, category: "🍎 Lifestyle & Habits", text: "How often do you take breaks or practice relaxation activities?", reverse: true },
-            { id: 20, category: "🍎 Lifestyle & Habits", text: "Do you spend too much time on screens/social media?", reverse: false },
-
-            // Self-Esteem & Self-Image
-            { id: 21, category: "❤ Self-Esteem & Self-Image", text: "Do you often feel confident in yourself?", reverse: true },
-            { id: 22, category: "❤ Self-Esteem & Self-Image", text: "How often do you compare yourself negatively with others?", reverse: false },
-            { id: 23, category: "❤ Self-Esteem & Self-Image", text: "Do you feel good about your personal achievements?", reverse: true },
-            { id: 24, category: "❤ Self-Esteem & Self-Image", text: "Do you often feel worthless or guilty?", reverse: false },
-            { id: 25, category: "❤ Self-Esteem & Self-Image", text: "How much control do you feel you have over your life?", reverse: true },
-
-            // Social & Support System
-            { id: 26, category: "👥 Social & Support System", text: "Do you feel connected with friends or family?", reverse: true },
-            { id: 27, category: "👥 Social & Support System", text: "How often do you avoid social interactions?", reverse: false },
-            { id: 28, category: "👥 Social & Support System", text: "Do you feel like you can share your feelings with someone you trust?", reverse: true },
-            { id: 29, category: "👥 Social & Support System", text: "Do you feel lonely even when surrounded by people?", reverse: false },
-            { id: 30, category: "👥 Social & Support System", text: "Do you have someone to turn to in times of crisis?", reverse: true }
+            {
+                id: 1,
+                category: "🎯 Self-Awareness",
+                text: "How often do you reflect on your personal values and purpose in life?",
+                options: [
+                    { value: 4, text: "A) Daily and regularly", icon: "🌟" },
+                    { value: 3, text: "B) Weekly", icon: "📅" },
+                    { value: 2, text: "C) Occasionally (once a month or less)", icon: "🗓️" },
+                    { value: 1, text: "D) Almost never", icon: "❌" }
+                ]
+            },
+            {
+                id: 2,
+                category: "💪 Resilience",
+                text: "When faced with suffering or hardship, how do you tend to respond?",
+                options: [
+                    { value: 4, text: "A) See it as an opportunity to grow or learn", icon: "🌱" },
+                    { value: 3, text: "B) Try to endure it without much reflection", icon: "⚖️" },
+                    { value: 2, text: "C) Feel overwhelmed and stuck", icon: "😰" },
+                    { value: 1, text: "D) Ignore it or distract myself", icon: "🙈" }
+                ]
+            },
+            {
+                id: 3,
+                category: "🧠 Emotional Intelligence",
+                text: "How aware are you of your emotions (both positive & negative) in everyday situations?",
+                options: [
+                    { value: 4, text: "A) Very aware — I can identify them and understand their cause", icon: "🎯" },
+                    { value: 3, text: "B) Somewhat aware — I notice them but not always sure why", icon: "🤔" },
+                    { value: 2, text: "C) Slightly aware — only when the emotion is strong", icon: "📊" },
+                    { value: 1, text: "D) Rarely aware", icon: "😶" }
+                ]
+            },
+            {
+                id: 4,
+                category: "🔍 Critical Thinking",
+                text: "In your behavior or decision-making at work, how often do you think \"why\" or \"what if\" to seek deeper understanding?",
+                options: [
+                    { value: 4, text: "A) Very often", icon: "🔬" },
+                    { value: 3, text: "B) Occasionally", icon: "💭" },
+                    { value: 2, text: "C) Rarely", icon: "📝" },
+                    { value: 1, text: "D) Never", icon: "❌" }
+                ]
+            },
+            {
+                id: 5,
+                category: "🔄 Adaptability",
+                text: "How flexible are you in adapting to changes or unexpected challenges at work?",
+                options: [
+                    { value: 4, text: "A) Very flexible — I adapt easily", icon: "🌊" },
+                    { value: 3, text: "B) Moderately flexible", icon: "🔧" },
+                    { value: 2, text: "C) Struggle sometimes", icon: "⚠️" },
+                    { value: 1, text: "D) Very rigid", icon: "🧱" }
+                ]
+            },
+            {
+                id: 6,
+                category: "⚖️ Ethics",
+                text: "When dealing with ethical dilemmas or situations where causing harm is possible, how do you generally act?",
+                options: [
+                    { value: 4, text: "A) Try my best not to cause unnecessary harm", icon: "💚" },
+                    { value: 3, text: "B) Consider pros and cons, may choose a compromise", icon: "🤝" },
+                    { value: 2, text: "C) Follow what's easiest or beneficial for me", icon: "⚡" },
+                    { value: 1, text: "D) Ignore ethics, act for personal benefit", icon: "💰" }
+                ]
+            },
+            {
+                id: 7,
+                category: "🌐 Connection",
+                text: "To what extent do you feel connected to others and to the larger purpose behind what you do?",
+                options: [
+                    { value: 4, text: "A) Deeply connected — sense of unity with people & mission", icon: "🤗" },
+                    { value: 3, text: "B) Moderately connected", icon: "👥" },
+                    { value: 2, text: "C) A little — sometimes feel connected, sometimes disconnected", icon: "🔗" },
+                    { value: 1, text: "D) Not connected", icon: "🏝️" }
+                ]
+            },
+            {
+                id: 8,
+                category: "🧘 Spiritual Practice",
+                text: "How often do you engage in rituals or practices (meditation, prayer, mindfulness) to nurture your inner peace or spirituality?",
+                options: [
+                    { value: 4, text: "A) Daily", icon: "🌅" },
+                    { value: 3, text: "B) Several times a week", icon: "📅" },
+                    { value: 2, text: "C) Few times a month", icon: "🗓️" },
+                    { value: 1, text: "D) Rarely or never", icon: "❌" }
+                ]
+            },
+            {
+                id: 9,
+                category: "✨ Vision & Values",
+                text: "When you are inspired by vision, values, or ideals, how much do they influence your work or daily life?",
+                options: [
+                    { value: 4, text: "A) Very much — they guide my choices often", icon: "🌟" },
+                    { value: 3, text: "B) Somewhat — they influence sometimes", icon: "💫" },
+                    { value: 2, text: "C) A little — only when reminded", icon: "💡" },
+                    { value: 1, text: "D) Not much — I act mostly on practical or immediate concerns", icon: "⚡" }
+                ]
+            },
+            {
+                id: 10,
+                category: "🔮 Systems Thinking",
+                text: "How would you describe your ability to see connections between diverse ideas, people, or situations?",
+                options: [
+                    { value: 4, text: "A) Very good — I often see patterns or connect different things meaningfully", icon: "🕸️" },
+                    { value: 3, text: "B) Good — sometimes I do", icon: "🔗" },
+                    { value: 2, text: "C) Fair — only when encouraged", icon: "📊" },
+                    { value: 1, text: "D) Poor — I mostly stay within familiar or narrow views", icon: "📦" }
+                ]
+            }
         ];
 
         // State
@@ -550,8 +601,21 @@
             
             // Clear previous selection
             currentSelectedAnswer = null;
-            const options = document.querySelectorAll('.option');
-            options.forEach(option => option.classList.remove('selected'));
+            
+            // Generate options dynamically
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.onclick = () => selectOption(index, option.value);
+                optionDiv.innerHTML = `
+                    <div class="option-icon">${option.icon}</div>
+                    <div class="option-text">${option.text}</div>
+                `;
+                optionsContainer.appendChild(optionDiv);
+            });
             
             // Update navigation
             document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
@@ -565,14 +629,14 @@
             }
         }
 
-        function selectOption(value) {
+        function selectOption(optionIndex, value) {
             currentSelectedAnswer = value;
             
             // Update UI
             const options = document.querySelectorAll('.option');
             options.forEach((option, index) => {
                 option.classList.remove('selected');
-                if (index === value) {
+                if (index === optionIndex) {
                     option.classList.add('selected');
                 }
             });
@@ -642,21 +706,21 @@
             document.getElementById('user-greeting').textContent = `Hello ${user.name}! Here are your assessment results:`;
             
             // Display total score and risk level
-            document.getElementById('total-score').textContent = results.totalScore + '/120';
+            document.getElementById('total-score').textContent = results.totalScore + '/40';
             
             let riskLevel, riskClass, riskDescription;
-            if (results.totalScore <= 40) {
-                riskLevel = 'Low Risk';
+            if (results.totalScore >= 30) {
+                riskLevel = 'High Wellbeing';
                 riskClass = 'risk-low';
-                riskDescription = 'Your responses suggest minimal mental health concerns. Continue maintaining healthy habits.';
-            } else if (results.totalScore <= 80) {
-                riskLevel = 'Moderate Risk';
+                riskDescription = 'Excellent psychological wellbeing! You show strong self-awareness, resilience, and connection.';
+            } else if (results.totalScore >= 20) {
+                riskLevel = 'Moderate Wellbeing';
                 riskClass = 'risk-moderate';
-                riskDescription = 'Your responses suggest some mental health concerns. Consider speaking with a counselor or therapist.';
+                riskDescription = 'Good psychological health with some areas for growth. Consider developing mindfulness practices.';
             } else {
-                riskLevel = 'High Risk';
+                riskLevel = 'Developing Wellbeing';
                 riskClass = 'risk-high';
-                riskDescription = 'Your responses suggest significant mental health concerns. We strongly recommend seeking professional help.';
+                riskDescription = 'Room for significant growth in psychological wellbeing. Consider exploring self-development practices.';
             }
             
             document.getElementById('risk-level').textContent = riskLevel;
@@ -672,7 +736,7 @@
                 categoryCard.className = 'category-card';
                 categoryCard.innerHTML = `
                     <div class="category-name">${category}</div>
-                    <div class="category-score">${score}/20</div>
+                    <div class="category-score">${score}/4</div>
                 `;
                 categoriesGrid.appendChild(categoryCard);
             });
@@ -681,66 +745,81 @@
             const recommendations = document.getElementById('recommendations');
             let recommendationText = '';
             
-            if (results.categoryScores['Stress & Anxiety'] > 12) {
-                recommendationText += '• Practice stress management techniques like deep breathing or meditation<br>';
+            if (results.categoryScores['Self-Awareness'] < 3) {
+                recommendationText += '• Develop a daily reflection practice - journaling or meditation<br>';
             }
-            if (results.categoryScores['Sleep & Energy'] > 12) {
-                recommendationText += '• Establish a consistent sleep schedule and improve sleep hygiene<br>';
+            if (results.categoryScores['Resilience'] < 3) {
+                recommendationText += '• Practice reframing challenges as growth opportunities<br>';
             }
-            if (results.categoryScores['Lifestyle & Habits'] > 12) {
-                recommendationText += '• Focus on regular exercise and balanced nutrition<br>';
+            if (results.categoryScores['Emotional Intelligence'] < 3) {
+                recommendationText += '• Practice mindfulness to increase emotional awareness<br>';
             }
-            if (results.categoryScores['Self-Esteem'] > 12) {
-                recommendationText += '• Practice self-compassion and consider therapy for self-esteem issues<br>';
+            if (results.categoryScores['Critical Thinking'] < 3) {
+                recommendationText += '• Ask "why" and "what if" questions more often in daily situations<br>';
             }
-            if (results.categoryScores['Social Support'] > 12) {
-                recommendationText += '• Work on building stronger social connections and support networks<br>';
+            if (results.categoryScores['Adaptability'] < 3) {
+                recommendationText += '• Challenge yourself with small changes to build flexibility<br>';
+            }
+            if (results.categoryScores['Ethics'] < 3) {
+                recommendationText += '• Reflect on your values and how they guide your decisions<br>';
+            }
+            if (results.categoryScores['Connection'] < 3) {
+                recommendationText += '• Seek meaningful relationships and consider your larger purpose<br>';
+            }
+            if (results.categoryScores['Spiritual Practice'] < 3) {
+                recommendationText += '• Explore meditation, prayer, or mindfulness practices<br>';
+            }
+            if (results.categoryScores['Vision & Values'] < 3) {
+                recommendationText += '• Clarify your core values and integrate them into daily decisions<br>';
+            }
+            if (results.categoryScores['Systems Thinking'] < 3) {
+                recommendationText += '• Practice seeing connections between different areas of your life<br>';
             }
             
             if (!recommendationText) {
-                recommendationText = '• Continue maintaining your current healthy mental health practices<br>• Stay connected with supportive relationships<br>• Practice regular self-care';
+                recommendationText = '• Continue developing your psychological awareness and practices<br>• Maintain your current positive patterns<br>• Consider deeper spiritual or philosophical exploration';
             } else {
-                recommendationText += '• Consider speaking with a mental health professional<br>• Practice regular self-care and mindfulness';
+                recommendationText += '• Consider working with a coach or therapist for deeper development<br>• Join groups focused on personal growth and mindfulness';
             }
             
             recommendations.innerHTML = recommendationText;
         }
 
         function calculateResults() {
-            const categoryMap = {
-                'General Mood & Feelings': 'Mood',
-                'Stress & Anxiety': 'Stress & Anxiety',
-                'Sleep & Energy': 'Sleep & Energy',
-                'Lifestyle & Habits': 'Lifestyle',
-                'Self-Esteem & Self-Image': 'Self-Esteem',
-                'Social & Support System': 'Social Support'
-            };
-            
             const categoryScores = {
-                'Mood': 0,
-                'Stress & Anxiety': 0,
-                'Sleep & Energy': 0,
-                'Lifestyle': 0,
-                'Self-Esteem': 0,
-                'Social Support': 0
+                'Self-Awareness': 0,
+                'Resilience': 0,
+                'Emotional Intelligence': 0,
+                'Critical Thinking': 0,
+                'Adaptability': 0,
+                'Ethics': 0,
+                'Connection': 0,
+                'Spiritual Practice': 0,
+                'Vision & Values': 0,
+                'Systems Thinking': 0
             };
             
             let totalScore = 0;
             
             responses.forEach(response => {
                 const question = questions.find(q => q.id === response.questionId);
-                let score = response.value;
+                const score = response.value;
                 
-                // Reverse score for positive questions
-                if (question.reverse) {
-                    score = 4 - score;
-                }
+                // Map question to category based on question ID
+                let categoryKey = '';
+                if (question.id === 1) categoryKey = 'Self-Awareness';
+                else if (question.id === 2) categoryKey = 'Resilience';
+                else if (question.id === 3) categoryKey = 'Emotional Intelligence';
+                else if (question.id === 4) categoryKey = 'Critical Thinking';
+                else if (question.id === 5) categoryKey = 'Adaptability';
+                else if (question.id === 6) categoryKey = 'Ethics';
+                else if (question.id === 7) categoryKey = 'Connection';
+                else if (question.id === 8) categoryKey = 'Spiritual Practice';
+                else if (question.id === 9) categoryKey = 'Vision & Values';
+                else if (question.id === 10) categoryKey = 'Systems Thinking';
                 
-                const categoryKey = question.category.replace(/^[🧠😰💤🍎❤👥]\s*/, '');
-                const mappedCategory = categoryMap[categoryKey];
-                
-                if (mappedCategory) {
-                    categoryScores[mappedCategory] += score;
+                if (categoryKey) {
+                    categoryScores[categoryKey] = score;
                 }
                 
                 totalScore += score;
