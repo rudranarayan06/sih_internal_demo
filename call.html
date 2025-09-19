@@ -52,6 +52,24 @@
   <body>
   <div class="call-wrapper">
     <h2>Live Video Call – Counsellor</h2>
+    <div class="call-box">
+  <div class="call-icons" id="callIcons">
+    <i class="fas fa-user-circle fa-5x call-avatar"></i>
+    <div class="call-status" id="callStatus">Connecting...</div>
+  </div>
+  <div id="videoPreviewContainer" style="display:none; margin-bottom:18px;">
+    <video id="videoPreview" autoplay playsinline muted style="width:100%; max-width:340px; border-radius:12px; background:#000;"></video>
+  </div>
+  <div class="call-controls">
+    <button class="circle-btn" id="micBtn" title="Mute"><i class="fas fa-microphone"></i></button>
+    <button class="circle-btn" id="videoBtn" title="Video"><i class="fas fa-video"></i></button>
+    <button class="circle-btn end" title="End Call" onclick="window.location.href='counsel.html'"><i class="fas fa-phone-slash"></i></button>
+  </div>
+  <div class="call-info">
+    <span><i class="fas fa-clock"></i> 00:00</span>
+    <span><i class="fas fa-signal"></i> Good</span>
+  </div>
+</div>
     <div class="video-area">
       <video id="localVideo" autoplay playsinline muted></video>
       <div class="status-text" id="errorMsg">Unable to access camera or microphone.</div>
@@ -76,9 +94,96 @@
   <span id="mic-status">🎤 Mic: Off</span>
   <span id="video-status">📷 Video: Off</span>
 </div>
-
-
   <script>
+  // Simple timer for call duration
+  let seconds = 0;
+  const timerSpan = document.querySelector('.call-info span');
+  setInterval(() => {
+    seconds++;
+    if(timerSpan) {
+      let min = String(Math.floor(seconds/60)).padStart(2,'0');
+      let sec = String(seconds%60).padStart(2,'0');
+      timerSpan.innerHTML = `<i class='fas fa-clock'></i> ${min}:${sec}`;
+    }
+  }, 1000);
+
+  // Camera/Mic logic
+  function getQueryParam(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name);
+  }
+  const callType = getQueryParam('type');
+  const videoPreview = document.getElementById('videoPreview');
+  const videoPreviewContainer = document.getElementById('videoPreviewContainer');
+  const callIcons = document.getElementById('callIcons');
+  const callStatus = document.getElementById('callStatus');
+  const micBtn = document.getElementById('micBtn');
+  const videoBtn = document.getElementById('videoBtn');
+  let localStream = null;
+  let micOn = true;
+  let videoOn = callType === 'video';
+
+  function updateMicIcon() {
+    micBtn.innerHTML = micOn ? '<i class=\"fas fa-microphone\"></i>' : '<i class=\"fas fa-microphone-slash\"></i>';
+  }
+  function updateVideoIcon() {
+    videoBtn.innerHTML = videoOn ? '<i class=\"fas fa-video\"></i>' : '<i class=\"fas fa-video-slash\"></i>';
+  }
+
+  function stopTracks(kind) {
+    if(localStream) {
+      localStream.getTracks().forEach(track => {
+        if(!kind || track.kind === kind) track.enabled = false;
+      });
+    }
+  }
+
+  async function startCall() {
+    if(callType === 'video') {
+      videoPreviewContainer.style.display = '';
+      callIcons.style.display = 'none';
+      callStatus.textContent = 'Video Call Connected';
+      try {
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        videoPreview.srcObject = localStream;
+      } catch(e) {
+        callStatus.textContent = 'Camera/Mic access denied!';
+      }
+    } else if(callType === 'voice') {
+      videoPreviewContainer.style.display = 'none';
+      callIcons.style.display = '';
+      callStatus.textContent = 'Voice Call Connected';
+      try {
+        localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      } catch(e) {
+        callStatus.textContent = 'Mic access denied!';
+      }
+    }
+    updateMicIcon();
+    updateVideoIcon();
+  }
+
+  micBtn.addEventListener('click', () => {
+    micOn = !micOn;
+    updateMicIcon();
+    if(localStream) {
+      localStream.getAudioTracks().forEach(track => track.enabled = micOn);
+    }
+  });
+  videoBtn.addEventListener('click', () => {
+    if(callType !== 'video') return;
+    videoOn = !videoOn;
+    updateVideoIcon();
+    if(localStream) {
+      localStream.getVideoTracks().forEach(track => track.enabled = videoOn);
+    }
+  });
+
+  window.onload = startCall;
+</script>
+
+
+  <!--<script>
     const video = document.getElementById('localVideo');
     const errorMsg = document.getElementById('errorMsg');
     let stream;
@@ -110,7 +215,7 @@
     });
 
     window.onload = startCamera;
-  </script>
+  </script>-->
 </body>
 
 <!--<body>
@@ -201,6 +306,7 @@ document.getElementById('video-btn').addEventListener('click', function () {
 </script>
 
 </html>
+
 
 
 
