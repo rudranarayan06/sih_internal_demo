@@ -169,6 +169,13 @@ button:hover {
 .cta-label {
   font-size: 16px;
 }
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: #e0e0e0;
+}
 
 
 
@@ -657,6 +664,7 @@ table th { background:#f3f4f6 }
 
     /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(20px);} to { opacity: 1; transform: translateY(0);} }
+
 
 
 
