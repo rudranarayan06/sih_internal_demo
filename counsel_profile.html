@@ -226,6 +226,28 @@
 
     }
 
+    /* Booking Request Table */
+.request-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.request-table th, .request-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.request-table th {
+  background: #4834d4;
+  color: white;
+}
+
+.request-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+
   </style>
 
 </head>
@@ -239,6 +261,8 @@
     <h2>Counsellor Dashboard</h2>
 
     <div class="menu">
+      <button onclick="showSection('bookings')" id="bookingsBtn">Booking Requests</button>
+
 
       <button onclick="showSection('students')">Students</button>
 
@@ -253,6 +277,35 @@
     </div>
 
   </div>
+
+  <!-- Booking Requests -->
+<div id="bookings" class="section">
+  <div class="card">
+    <h3 id="bookingHeading">Student Booking Requests</h3>
+    <table class="request-table">
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Preferred Date</th>
+          <th>Time</th>
+          <th>Message</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="requestList">
+        <!-- Sample request -->
+        <tr>
+          <td>Riya Sharma</td>
+          <td>22 Sept 2025</td>
+          <td>4:00 PM</td>
+          <td>Need urgent counselling regarding exam stress</td>
+          <td><button class="btn">Accept</button> <button class="btn">Reject</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
   <!-- Students -->
 
@@ -493,5 +546,6 @@
   </script>
 
 </body>
+
 
 </html>
