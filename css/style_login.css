@@ -446,6 +446,10 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
+    background: linear-gradient(135deg, var(--primary-color), #0ea5e9, #8b5cf6);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
 }
 
 .header-brand {
